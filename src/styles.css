@@ -1,264 +1,356 @@
 /* You can add global styles to this file, and also import other style files */
 .tag {
-	font-weight: bold;
-	margin-right: 1em;
+  font-weight: bold;
+  margin-right: 1em;
 }
 
 .value {
-	font-family: monospace;
+  font-family: monospace;
 }
 
 .pre {
-	font-family: monospace;
-	white-space: pre;
+  font-family: monospace;
+  white-space: pre;
 }
 
 .login-container {
-	height: 100vh;
-	position: relative;
-	background: #0D4D64;
+  height: 100vh;
+  position: relative;
+  background: #0D4D64;
 }
 
 .login-form-container {
-	position: absolute;
-	width: 360px;
-	top: 50%;
-	left: 50%;
-	-webkit-transform: translate(-50%, -50%);
-	/* Ch <36, Saf 5.1+, iOS < 9.2, An =<4.4.4 */
-	-ms-transform: translate(-50%, -50%);
-	/* IE 9 */
-	transform: translate(-50%, -50%);
-	/* IE 10, Fx 16+, Op 12.1+ */
+  position: absolute;
+  width: 360px;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  /* Ch <36, Saf 5.1+, iOS < 9.2, An =<4.4.4 */
+  -ms-transform: translate(-50%, -50%);
+  /* IE 9 */
+  transform: translate(-50%, -50%);
+  /* IE 10, Fx 16+, Op 12.1+ */
 }
 
 .login-form-container .logo {
-	text-align: center;
-	margin: 20px 0px;
+  text-align: center;
+  margin: 20px 0px;
 }
-
-.main-content {
-	position: relative;
-	width: 100%;
-	height: 100vh;
-	float: left;
+.borderless{
+    padding: 0px;
+    margin: 0px;
 }
-
-.init-vars {
-	position: absolute;
-	width: 360px;
-	top: 50%;
-	left: 50%;
-	-webkit-transform: translate(-50%, -50%);
-	/* Ch <36, Saf 5.1+, iOS < 9.2, An =<4.4.4 */
-	-ms-transform: translate(-50%, -50%);
-	/* IE 9 */
-	transform: translate(-50%, -50%);
-	/* IE 10, Fx 16+, Op 12.1+ */
-}
-
 header {
-	width: 100%;
-	display: block;
-	background: #f7f9fc;
-	float: left;
-	height: 56px;
-	position: relative;
+  width: 100%;
+  display: block;
+  background: #f7f9fc;
+  float: left;
+  height: 56px;
+  position: relative;
 }
 
 header .header-container {
-	width: 90%;
-	margin: 0 auto;
-	position: relative;
+  width: 90%;
+  margin: 0 auto;
+  position: relative;
 
 }
 
 header .header-container .logo {
-	display: inline-block;
-	width: 30%;
-	position: relative;
-	height: 56px;
+  display: inline-block;
+  width: 30%;
+  position: relative;
+  height: 56px;
 }
 
 header .header-container .logo img {
-	max-width: 100%;
-	position: absolute;
-	top: 50%;
-	left: 0%;
-	-moz-transform: translate(0%, -50%);
-	-o-transform: translate(0%, -50%);
-	-ms-transform: translate(0%, -50%);
-	-webkit-transform: translate(0%, -50%);
-	transform: translate(0%, -50%);
-	height: 50px;
-	width: 37px;
+  max-width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  -moz-transform: translate(0%, -50%);
+  -o-transform: translate(0%, -50%);
+  -ms-transform: translate(0%, -50%);
+  -webkit-transform: translate(0%, -50%);
+  transform: translate(0%, -50%);
+  height: 50px;
+  width: 37px;
 }
 
 header .header-container .sesion {
-	display: inline-block;
-	width: 70%;
-	height: 56px;
-	text-align: right;
-	font-size: 12px;
-	position: relative;
+  display: inline-block;
+  width: 70%;
+  height: 56px;
+  text-align: right;
+  font-size: 12px;
+  position: relative;
 }
 
 header .header-container .sesion .text {
-	display: inline-block;
-	position: absolute;
-	right: 80px;
-	top: 50%;
-	-moz-transform: translate(0%, -50%);
-	-o-transform: translate(0%, -50%);
-	-ms-transform: translate(0%, -50%);
-	-webkit-transform: translate(0%, -50%);
-	transform: translate(0%, -50%);
+  display: inline-block;
+  position: absolute;
+  right: 80px;
+  top: 50%;
+  -moz-transform: translate(0%, -50%);
+  -o-transform: translate(0%, -50%);
+  -ms-transform: translate(0%, -50%);
+  -webkit-transform: translate(0%, -50%);
+  transform: translate(0%, -50%);
 }
 
 header .header-container .sesion .text p {
-	margin: 0px;
+  margin: 0px;
 }
 
 header .header-container .sesion .text .name {
-	color: #3e547f;
+  color: #3e547f;
 }
 
 header .header-container .sesion .text .job {
-	color: #8f9bb3;
-	font-size: 9px;
-	font-weight: 300;
-	font-style: Italic;
+  color: #8f9bb3;
+  font-size: 9px;
+  font-weight: 300;
+  font-style: Italic;
 }
 
 header .header-container .sesion .text .state {
-	color: #222b45;
-	font-size: 11px;
-	font-weight: 600;
+  color: #222b45;
+  font-size: 11px;
+  font-weight: 600;
 }
 
 header .header-container .sesion img {
-	display: inline-block;
-	position: absolute;
-	width: 40px;
-	top: 50%;
-	right: 0%;
-	-moz-transform: translate(0%, -50%);
-	-o-transform: translate(0%, -50%);
-	-ms-transform: translate(0%, -50%);
-	-webkit-transform: translate(0%, -50%);
-	transform: translate(0%, -50%);
+  display: inline-block;
+  position: absolute;
+  width: 40px;
+  top: 50%;
+  right: 0%;
+  -moz-transform: translate(0%, -50%);
+  -o-transform: translate(0%, -50%);
+  -ms-transform: translate(0%, -50%);
+  -webkit-transform: translate(0%, -50%);
+  transform: translate(0%, -50%);
 }
+
 .button-session {
-    display: none;
-    position: absolute;
-    right: 0%;
-    width: 112px;
-    height: 37px;
-    border-radius: 3px;
-    border: solid 1px #979797;
-    background-color: #f7f9fc;
-    top: 56px;
-    text-align: center;
-    cursor: pointer;
-    color: #2e3a59;
-    z-index: 1;
+  display: none;
+  position: absolute;
+  right: 0%;
+  width: 112px;
+  height: 37px;
+  border-radius: 3px;
+  border: solid 1px #979797;
+  background-color: #f7f9fc;
+  top: 56px;
+  text-align: center;
+  cursor: pointer;
+  color: #2e3a59;
+  z-index: 1;
 }
-.borderless{
-	padding: 0px;
-	margin: 0px;
-}
+
 .session-close {
+  position: absolute;
+  right: 0%;
+  top: 50%;
+  -moz-transform: translate(0%, -50%);
+  -o-transform: translate(0%, -50%);
+  -ms-transform: translate(0%, -50%);
+  -webkit-transform: translate(0%, -50%);
+  transform: translate(0%, -50%);
+  cursor: pointer;
+}
+
+.main-content {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  float: left;
+  background: #042733;
+}
+
+.init-vars {
+  position: relative;
+  width: 360px;
+  text-align: center;
+  margin: 20px auto;
+}
+
+.texto_info {
+  margin: 20px 0px;
+  font-size: 20px;
+}
+
+.modal-content {
+  border-radius: 6px;
+}
+
+.mat-radio-label {
+  margin-bottom: 0px;
+}
+
+.init-vars .row {
+  margin: 0px;
+}
+
+.init-vars .col-6 {
+  border: 1px solid #e9eff4;
+  background: white;
+  border-radius: 6px;
+  padding: 20px;
+  margin: 0px 15px;
+  font-size: 12px;
+  max-width: 125px;
+}
+.btn-okinfo{
+    margin: 20px auto;
+    color: gray;
+}
+a.ok_info{
+    color: gray !important;
+}
+
+footer {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .header-container {
+    width: 90%;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .header-container .logo {
+    height: 56px;
+  }
+
+  .header-container .logo img {
+    height: 45px;
+    width: 33px;
+  }
+
+  .header-container .sesion {
+    height: 56px;
+  }
+
+  .header-container .sesion .text {
+    right: 53px;
+    -moz-transform: translate(0%, -50%);
+    -o-transform: translate(0%, -50%);
+    -ms-transform: translate(0%, -50%);
+    -webkit-transform: translate(0%, -50%);
+    transform: translate(0%, -50%);
+  }
+
+  .header-container .sesion .text .name {
+    font-size: 12px;
+  }
+
+  .header-container .sesion .text .job {
+    font-size: 10px;
+  }
+
+  .header-container .sesion .text .state {
+    font-size: 12px;
+  }
+
+  .header-container .sesion img {
+    width: 43px;
+  }
+
+  footer {
+    display: block;
+    background: #f7f9fc;
+    height: 62px;
+    width: 100%;
+    float: left;
+    position: relative;
+  }
+
+  footer .container {
+    width: 90%;
+    margin: 0 auto;
+    position: relative;
+    height: 62px;
+    font-size: 14px;
+    color: #85a4a7;
+  }
+
+  footer .container .row {
+    height: 62px;
+  }
+  footer .container .logo .logo-text {
+    text-transform: left;
+    display: inline-block;
+    font-weight: 600;
+    width: 200px;
     position: absolute;
-    right: 0%;
     top: 50%;
     -moz-transform: translate(0%, -50%);
-	-o-transform: translate(0%, -50%);
-	-ms-transform: translate(0%, -50%);
-	-webkit-transform: translate(0%, -50%);
-	transform: translate(0%, -50%);
-    cursor: pointer;
-}
-.btn-checkbox {
-    border: 1px solid #e9eff4;
-    background: white;
-    height: 68px;
-    border-radius: 6px;
-    width: 100%;
-    font-size: 12px;
-}
-@media screen and (min-width: 768px) {
-	.header-container {
-		width: 90%;
-		margin: 0 auto;
-		position: relative;
-	}
+    -o-transform: translate(0%, -50%);
+    -ms-transform: translate(0%, -50%);
+    -webkit-transform: translate(0%, -50%);
+    transform: translate(0%, -50%);
+  }
 
-	.header-container .logo {
-		height: 56px;
-	}
+  footer .container .contenedor-texto {
+    position: relative;
+    height: 62px;
+    display: inline-block;
+    width: 110px;
+    padding-left: 15px;
+  }
 
-	.header-container .logo img {
-		height: 45px;
-		width: 33px;
-	}
-
-	.header-container .sesion {
-		height: 56px;
-	}
-
-	.header-container .sesion .text {
-		right: 53px;
-		-moz-transform: translate(0%, -50%);
-		-o-transform: translate(0%, -50%);
-		-ms-transform: translate(0%, -50%);
-		-webkit-transform: translate(0%, -50%);
-		transform: translate(0%, -50%);
-	}
-
-	.header-container .sesion .text .name {
-		font-size: 12px;
-	}
-
-	.header-container .sesion .text .job {
-		font-size: 10px;
-	}
-
-	.header-container .sesion .text .state {
-		font-size: 12px;
-	}
-
-	.header-container .sesion img {
-		width: 43px;
-	}
+  footer .container .contenedor-texto .powered {
+    text-transform: left;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    -moz-transform: translate(0%, -50%);
+    -o-transform: translate(0%, -50%);
+    -ms-transform: translate(0%, -50%);
+    -webkit-transform: translate(0%, -50%);
+    transform: translate(0%, -50%);
+  }
 }
 
 @media (min-width: 1440px) {
-	header {
-		height: 80px;
-	}
+  header {
+    height: 80px;
+  }
 
-	header .header-container .logo {
-		height: 80px;
-	}
+  header .header-container .logo {
+    height: 80px;
+  }
 
-	header .header-container .logo img {
-		height: 68px;
-		width: 50px;
-	}
+  header .header-container .logo img {
+    height: 68px;
+    width: 50px;
+  }
 
-	header .header-container .sesion {
-		height: 80px;
-	}
+  header .header-container .sesion {
+    height: 80px;
+  }
 
-	header .header-container .sesion .text {
-		right: 80px;
-	}
+  header .header-container .sesion .text {
+    right: 80px;
+  }
 
-	header .header-container .sesion .text .name {
-		font-size: 14px;
-	}
+  header .header-container .sesion .text .name {
+    font-size: 14px;
+  }
 
-	header .header-container .sesion img {
-		width: 58px;
-	}
+  header .header-container .sesion img {
+    width: 58px;
+  }
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
