@@ -165,7 +165,9 @@ header .header-container .sesion img {
 .main-content {
   position: relative;
   width: 100%;
-  min-height: 100vh;
+  min-height:  -webkit-calc(100vh - 56px);
+	min-height: -moz-calc(100vh - 56px);
+	min-height: calc(100vh - 56px);;
   float: left;
   background: #042733;
 }
@@ -418,6 +420,11 @@ i.material-icons.backup {
   background: #ccfce3;
 }
 @media screen and (min-width: 768px) {
+  .main-content {
+    min-height:  -webkit-calc(100vh - 118px);
+    min-height: -moz-calc(100vh - 118px);
+    min-height: calc(100vh - 118px);;
+  }
   .header-container {
     width: 90%;
     margin: 0 auto;
@@ -520,9 +527,15 @@ i.material-icons.backup {
 }
 
 @media (min-width: 1440px) {
+  .main-content {
+    min-height:  -webkit-calc(100vh - 142px);
+    min-height: -moz-calc(100vh - 142px);
+    min-height: calc(100vh - 142px);;
+  }
   header {
     height: 80px;
   }
+  
 
   header .header-container .logo {
     height: 80px;
