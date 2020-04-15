@@ -36,10 +36,12 @@
   text-align: center;
   margin: 20px 0px;
 }
-.borderless{
-    padding: 0px;
-    margin: 0px;
+
+.borderless {
+  padding: 0px;
+  margin: 0px;
 }
+
 header {
   width: 100%;
   display: block;
@@ -167,7 +169,31 @@ header .header-container .sesion img {
   float: left;
   background: #042733;
 }
-
+.breadcrumb {
+  background-color: transparent;
+  color: #fff;
+  font-size: 14px;
+  margin: 0;
+}
+.mat-stepper-horizontal {
+  background-color: #042733;
+}
+.mat-horizontal-stepper-header-container{
+  width: 80%;
+  margin: 0 auto;
+}
+.mat-step-icon{
+  background-color: white !important;
+  width: 40px !important;
+  height: 40px !important;
+}
+.mat-step-icon-state-done, .mat-step-icon-selected, .mat-step-icon-state-edit{
+  background-color: #0ee280 !important;
+  color: #042733 !important;
+}
+.mat-stepper-horizontal-line{
+  border-top-color: #0ee280;
+}
 .init-vars {
   position: relative;
   width: 360px;
@@ -201,18 +227,196 @@ header .header-container .sesion img {
   font-size: 12px;
   max-width: 125px;
 }
-.btn-okinfo{
-    margin: 20px auto;
-    color: gray;
+
+.btn-okinfo {
+  margin: 20px auto;
+  color: gray;
 }
-a.ok_info{
-    color: gray !important;
+
+a.ok_info {
+  color: gray !important;
+}
+
+.steps {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.mat-horizontal-stepper-header-container {
+  background: #042733;
+}
+
+.mat-horizontal-content-container {
+  background: #042733;
+}
+
+.imagenes-vehiculos .row {
+  margin: 20px 0px;
+}
+
+.imagenes-vehiculos .col-4 {
+  text-align: center;
+  margin: 0 auto;
+  padding: 0px;
+}
+
+.imagenes-vehiculos .col-4 .container-col {
+  width: 80px;
+  height: 80px;
+  border-radius: 5px;
+  border: solid 1px #e9eff4;
+  margin: 0 auto;
+  position: relative;
+}
+
+.imagenes-vehiculos .col-4 .container-col .content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -moz-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+.imagenes-vehiculos .col-4 .container-col .content p {
+  font-size: 12px;
+  margin: 5px auto;
+  color: #8f9bb3;
+}
+
+.imagenes-vehiculos .col-4 .container-col.active {
+  background: #2e3a59 !important;
+}
+
+.imagenes-vehiculos .col-4 .container-col.active .content p {
+  color: white !important;
+}
+
+.imagenes-vehiculos .col-4 .container-col:hover {
+  background: #8f9bb3;
+}
+
+.imagenes-vehiculos .col-4 .container-col:hover .content p {
+  color: white;
+}
+
+.imagenes-vehiculos .col-4 .container-col:focus {
+  background: #c5cee0;
+}
+
+.imagenes-vehiculos .col-4 .container-col:focus .content p {
+  color: #788cb5;
+}
+
+.imagenes-vehiculos .col-4 img {
+  max-height: 30px;
+  width: 58px;
+}
+
+.datos-vehiculo .col-md-6 .container {
+  border-radius: 6px;
+  box-shadow: 0 2px 9px 0 rgba(0, 0, 0, .03);
+  background-color: #fff;
+	padding: 20px;
+	margin: 20px auto
 }
 
 footer {
   display: none;
 }
-
+.button{
+	display: flex;
+}
+.button > button{
+	display: inline-block;
+}
+.group-upload{
+  position: relative;
+}
+.text-container-upload{
+  border-radius: 6px;
+  border: dashed 1px #042733;
+  background-color: #fff;
+  margin: 0 20px;
+  padding: 20px;
+  color: #99a4bb;
+  font-size: 12px;
+  text-align: center;
+}
+.upload_link{
+  color: #36f;
+  text-decoration: underline;
+  font-weight: 600;
+}
+i.material-icons.backup {
+  font-size: 30px;
+  color: #042733;
+}
+.vin-upload {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  height: 38px;
+  width: 40px;
+  padding: 5px;
+}
+.top-div {
+  display: block;
+  width: 290px;
+  height: 500px;
+  position: relative;
+  margin: 20px auto;
+  border-radius: 6px;
+  background: white;
+  -webkit-box-shadow: 0 2px 9px 0 rgba(0, 0, 0, 0.03), 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 9px 0 rgba(0, 0, 0, 0.03), 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+}
+.cenital-view {
+  width: 170px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -moz-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.table-container{
+  width: 95%;
+  border-radius: 6px;
+  box-shadow: 0 2px 9px 0 rgba(0,0,0,.03);
+  background-color: #fff;
+  margin: 0 auto;
+  text-align: center;
+  padding: 40px 30px 30px 30px;
+  max-width: 650px;
+}
+.step-3 .mat-table{
+  width: 100%;
+}
+.step-3 .mat-header-cell .mat-checkbox-inner-container.mat-checkbox-inner-container-no-side-margin {
+  visibility: hidden;
+}
+.step-3 .mat-header-row{
+  background: #2e3a59;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 400;
+}
+.step-3 .mat-header-cell.mat-column-Pieza {
+  text-align: center;
+  color: white;
+  font-weight: 400;
+  font-size: 14px;
+}
+.step-3 .mat-table tbody{
+  background: #ccfce3;
+}
 @media screen and (min-width: 768px) {
   .header-container {
     width: 90%;
@@ -279,6 +483,7 @@ footer {
   footer .container .row {
     height: 62px;
   }
+
   footer .container .logo .logo-text {
     text-transform: left;
     display: inline-block;

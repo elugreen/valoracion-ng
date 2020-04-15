@@ -12,7 +12,7 @@
         <p class="job visible" id="ss_idcaso" hidden>c25d5d98-e3de-43d9-95cf-a5775c5651d4</p>
         <p class="state">En línea</p>
       </div>
-      <img src="../assets/img//user1.png" alt="">
+      <img src="../assets/img/user1.png" alt="">
     </div>
   </div>
   <i class="material-icons session-close">keyboard_arrow_down</i>
@@ -21,51 +21,439 @@
   </div>
 </header>
 <div class="main-content">
-  <div class="container-fluid borderless">
-    <div class="init-vars">
+  <div class="container-fluid borderless" >
+    <div class="init-vars"  *ngIf="currPdiv == 'select'">
       <div class="modal-body">
         <div class="modal-content">
-            <h3 class="texto_info okinfo-title">Amparo a afectar</h3>
-            <mat-radio-group aria-label="Select an option">
-              <div class="row justify-content-between">
-                <div class="col-6">
-                  <mat-radio-button value="tercero" class="btn-checkbox">Tercero</mat-radio-button>
-                </div>
-                <div class="col-6">
-                  <mat-radio-button value="asegurado" class="btn-checkbox">Asegurado</mat-radio-button>
-                </div>
+          <h3 class="texto_info okinfo-title">Amparo a afectar</h3>
+          <mat-radio-group aria-label="Select an option">
+            <div class="row justify-content-between">
+              <div class="col-6">
+                <mat-radio-button value="tercero" class="btn-checkbox">Tercero</mat-radio-button>
               </div>
-            </mat-radio-group>
-            <h3 class="texto_info">Tipo de servicio</h3>
-            <mat-radio-group aria-label="Select an option">
-              <div class="row justify-content-between">
-                <div class="col-6">
-                  <mat-radio-button value="Publico" class="btn-checkbox">Público</mat-radio-button>
-                </div>
-                <div class="col-6">
-                  <mat-radio-button value="particular" class="btn-checkbox">particular</mat-radio-button>
-                </div>
+              <div class="col-6">
+                <mat-radio-button value="asegurado" class="btn-checkbox">Asegurado</mat-radio-button>
               </div>
-            </mat-radio-group>
-            <h3 class="texto_info">Perdida total</h3>
-            <mat-radio-group aria-label="Select an option">
-              <div class="row justify-content-between">
-                <div class="col-6">
-                  <mat-radio-button value="si" class="btn-checkbox">Si</mat-radio-button>
-                </div>
-                <div class="col-6">
-                  <mat-radio-button value="no" class="btn-checkbox">No</mat-radio-button>
-                </div>
+            </div>
+          </mat-radio-group>
+          <h3 class="texto_info">Tipo de servicio</h3>
+          <mat-radio-group aria-label="Select an option">
+            <div class="row justify-content-between">
+              <div class="col-6">
+                <mat-radio-button value="Publico" class="btn-checkbox">Público</mat-radio-button>
               </div>
-            </mat-radio-group>
-            
+              <div class="col-6">
+                <mat-radio-button value="particular" class="btn-checkbox">particular</mat-radio-button>
+              </div>
+            </div>
+          </mat-radio-group>
+          <h3 class="texto_info">Perdida total</h3>
+          <mat-radio-group aria-label="Select an option">
+            <div class="row justify-content-between">
+              <div class="col-6">
+                <mat-radio-button value="si" class="btn-checkbox">Si</mat-radio-button>
+              </div>
+              <div class="col-6">
+                <mat-radio-button value="no" class="btn-checkbox">No</mat-radio-button>
+              </div>
+            </div>
+          </mat-radio-group>
+
 
           <div class="buttons btn-okinfo">
-            <div class="container"><a href="" class="ok_info">OK</a></div>
+            <div class="container"><span class="ok_info" (click)="ShowPdiv('steps')">OK</span></div>
           </div>
         </div>
       </div>
     </div>
+    <div class="steps"  *ngIf="currPdiv == 'steps'">
+      <mat-horizontal-stepper>
+        <mat-step>
+          <div>
+            <div class="step-1" *ngIf="currDiv == 'step-1'">7
+              <div class="breadcrumb">
+                <p>Inicio / <b>Datos generales</b></p>
+              </div>
+              <div class="row datos-vehiculo">
+                <div class="col-md-6">
+                  <div class="container">
+                    <form>
+                      <div class="form-group group-upload">
+                        <input type="vin" class="form-control" id="vin" placeholder="VIN">
+                        <a class="vin-upload btn btn-outline-dark" (click)="open_modal(content)"><span
+                            class="material-icons"> publish</span> </a>
+                      </div>
+                      <div class="form-group">
+                        <input type="placa" class="form-control" id="placa" placeholder="Placa">
+                      </div>
+                      <div class="form-group">
+                        <input type="marca" class="form-control" id="marca" placeholder="Marca">
+                      </div>
+                      <div class="form-group">
+                        <div class="ui-selectmenu">
+                          <div id="linea-button" class="">
+                            <select class="form-control" id="linea">
+                              <option id="SANDERO [FL] DYNAMIQUE AT 1600CC 16V AA">SANDERO [FL] DYNAMIQUE AT 1600CC 16V
+                                AA
+                              </option>
+                            </select></div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <input type="modelo" class="form-control" id="modelo" placeholder="Modelo">
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="container">
+                    <div class="imagenes-vehiculos">
+                      <div class="row">
+                        <div class="col-4 tipo_vehiculo">
+                          <div class="container-col seleccionable active" id="hatchback">
+                            <div class="content">
+                              <img src="../assets/img/hatchback.png" alt="">
+                              <p>Hatchback</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-4 tipo_vehiculo">
+                          <div class="container-col seleccionable" id="sedan">
+                            <div class="content">
+                              <img src="../assets/img/sedan.png" alt="">
+                              <p>Sedan</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-4 tipo_vehiculo">
+                          <div class="container-col no_seleccionable" id="pickup">
+                            <div class="content">
+                              <img src="../assets/img/pickup.png" alt="">
+                              <p>Pickup</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-4 tipo_vehiculo">
+                          <div class="container-col no_seleccionable" id="coupe">
+                            <div class="content">
+                              <img src="../assets/img/coupe.png" alt="">
+                              <p>Coupe</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-4 tipo_vehiculo">
+                          <div class="container-col no_seleccionable" id="camioneta">
+                            <div class="content">
+                              <img src="../assets/img/camioneta.png" alt="">
+                              <p>Camioneta</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-4 tipo_vehiculo">
+                          <div class="container-col no_seleccionable" id="campero">
+                            <div class="content">
+                              <img src="../assets/img/campero.png" alt="">
+                              <p>Campero</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form">
+                      <form>
+                        <div class="form-group">
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div id="tipo_pintura-button"><select class="form-control" id="tipo_pintura">
+                                  <option value="metalizada">Tipo de pintura</option>
+                                  <option value="metalizada">metalizada</option>
+                                  <option value="monocapa">monocapa</option>
+                                  <option value="perlada">perlada</option>
+                                  <option value="solido bicapa">solido bicapa</option>
+                                  <option value="tricapa">tricapa</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div id="color"><select class="form-control" id="color">
+                                  <option value="metalizada">Color del vehículo</option>
+                                  <option value="Rojo">Rojo</option>
+                                  <option value="Azul">Azul</option>
+                                  <option value="Negro">Negro</option>
+                                  <option value="Gris">Gris</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="form-group">
+                      <input type="valor_asegurado" class="form-control" id="valor_asegurado"
+                        placeholder="Valor Asegurado">
+                    </div>
+                    <div class="form-group">
+                      <div class="ui-selectmenu">
+                        <div id="Ciudad" class="">
+                          <select class="form-control" id="ciudad">
+                            <option id="">Ciudad</option>
+                          </select></div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="ui-selectmenu">
+                        <div id="taller" class="">
+                          <select class="form-control" id="taller">
+                            <option id="">Taller</option>
+                          </select></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col text-center">
+                  <button class="btn btn-warning" (click)="ShowDiv('step-2')">CONTINUAR</button>
+                </div>
+              </div>
+              <ng-template #content let-modal>
+                <div class="modal-header">
+                  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="text-container-upload">
+                    <i class="material-icons backup">backup</i>
+                    <p>Carga la imagen de la tarjeta de propiedad del vehiculo</p>
+                    <input style="display: none" type="file" (change)="onFileSelect($event)" #hiddenfileinput>
+
+                    <span class="upload_link" (click)="hiddenfileinput.click()">Buscar en tu equipo</span>
+                  </div>
+                </div>
+                <div class="modal-footer">
+
+                </div>
+              </ng-template>
+            </div>
+            <div class="step-2" *ngIf="currDiv == 'step-2'">
+              <div class="col-12 image-container">
+                <div class="top-div">
+                  <img class="cenital-view" src="../assets/img/cenital.png" alt="">
+                </div>
+                <div class="buttons">
+                  <button type="button" class="btn-before">ATRÁS</button>
+                  <button type="button" class="btn-continue disabled">CONTINUAR</button>
+                </div>
+              </div>
+              <button mat-button class="btn btn-warning" (click)="ShowDiv('step-1')">Back</button>
+              <button mat-button class="btn btn-warning" matStepperNext
+                (click)="ShowDiv('step-3')">Next</button>
+            </div>
+          </div>
+        </mat-step>
+        <mat-step>
+          <div class="step-3" *ngIf="currDiv == 'step-3'">
+            <div class="table-container">
+              <mat-form-field>
+                <mat-label>Agregar piezas</mat-label>
+                <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
+              </mat-form-field>
+              <table mat-table [dataSource]="dataSource">
+
+                <!-- Checkbox Column -->
+                <ng-container matColumnDef="select">
+                  <th mat-header-cell *matHeaderCellDef>
+                    <mat-checkbox (change)="$event ? masterToggle() : null"
+                      [checked]="selection.hasValue() && isAllSelected()"
+                      [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+                    </mat-checkbox>
+                  </th>
+                  <td mat-cell *matCellDef="let row">
+                    <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+                      [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+                    </mat-checkbox>
+                  </td>
+                </ng-container>
+
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="Pieza">
+                  <th mat-header-cell *matHeaderCellDef> Pieza </th>
+                  <td mat-cell *matCellDef="let element"> {{element.Pieza}} </td>
+                </ng-container>
+
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
+                </tr>
+              </table>
+            </div>
+            <div class="row">
+              <div class="col text-center">
+                <button class="btn btn-warning" (click)="ShowDiv('step-4')">CONTINUAR</button>
+              </div>
+            </div>
+          </div>
+          <div class="step-4" *ngIf="currDiv == 'step-4'">
+            <div class="col-12 main-container-table">
+              <div class="row valoracion-texto">
+                <div id="encabezado_resultado" class="col-8">
+                  <h4>Valoración</h4>
+                  <p id="informacion_placa"><b>PLACA:</b> UTN539</p>
+                  <p id="informacion_marca"><b>MARCA:</b> RENAULT</p>
+                  <p id="informacion_linea"><b>LINEA:</b> SANDERO [FL] DYNAMIQUE AT 1600CC 16V AA</p>
+                </div>
+                <div class="col-4">
+                  <div class="row">
+                    <div class="col-3">
+                      <a href="   ">
+                        <i class="material-icons share" style="display: none;">share</i>
+                      </a>
+                    </div>
+                    <div class="col-3">
+                      <a href="   ">
+                        <i class="material-icons pdf" id="print">picture_as_pdf</i>
+                      </a>
+                    </div>
+                    <div class="col-3">
+                      <a href="   ">
+                        <i id="edit_table" class="editar material-icons pdf">mode_edit</i>
+                      </a>
+                    </div>
+                    <div class="col-3">
+                      <a href="   ">
+                        <i id="expand_table" class="editar material-icons pdf">fullscreen_exit</i>
+                      </a>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="table-responsive">
+                  <table id="table_rm" class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">Pieza</th>
+                        <th scope="col" style="min-width:150px">Accion</th>
+                        <th scope="col">Referencia</th>
+                        <th scope="col">Valor unitario</th>
+
+                        <th class="colpsable visible" scope="col">Probabilidad</th>
+                        <th class="colpsable visible" scope="col">Precio Negociación</th>
+                        <th class="colpsable visible" scope="col">Precio de lista</th>
+                        <th class="colpsable visible" scope="col">Precio minimo</th>
+                        <th class="colpsable visible" scope="col">Marca</th>
+                        <th class="colpsable visible" scope="col">Línea</th>
+
+                        <th class="tableedit_s" scope="col">Eliminar</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="tr_parte" id="CINTA_DECORATIVA_ANTERIOR_PUERTA_TRASERO_DERECHO_df">
+                        <td id="CINTA_DECORATIVA_ANTERIOR_PUERTA_TRASERO_DERECHO_nb">CINTA DECORATIVA ANTERIOR PUERTA
+                          TRASERO DERECHO</td>
+                        <td id="CINTA_DECORATIVA_ANTERIOR_PUERTA_TRASERO_DERECHO_acc"><select
+                            class="tableedit_d form-control editable" id="_acc">
+                            <option value="C">Cambio</option>
+                            <option value="R">Reparacion</option>
+                          </select></td>
+                        <td id="CINTA_DECORATIVA_ANTERIOR_PUERTA_TRASERO_DERECHO_ref">No Encontrada</td>
+                        <td id="CINTA_DECORATIVA_ANTERIOR_PUERTA_TRASERO_DERECHO_vu">$ 0 COP</td>
+                        <td id="CINTA_DECORATIVA_ANTERIOR_PUERTA_TRASERO_DERECHO_pb" class="colpsable visible">0</td>
+                        <td id="CINTA_DECORATIVA_ANTERIOR_PUERTA_TRASERO_DERECHO_pn" class="colpsable visible">$ 0 COP
+                        </td>
+                        <td id="CINTA_DECORATIVA_ANTERIOR_PUERTA_TRASERO_DERECHO_pl" class="colpsable visible">$ 0 COP
+                        </td>
+                        <td id="CINTA_DECORATIVA_ANTERIOR_PUERTA_TRASERO_DERECHO_pm" class="colpsable visible">$ 0 COP
+                        </td>
+                        <td id="CINTA_DECORATIVA_ANTERIOR_PUERTA_TRASERO_DERECHO_mc" class="colpsable visible">No
+                          Encontrada</td>
+                        <td id="CINTA_DECORATIVA_ANTERIOR_PUERTA_TRASERO_DERECHO_ln" class="colpsable visible">No
+                          Encontrada</td>
+                        <td id="CINTA_DECORATIVA_ANTERIOR_PUERTA_TRASERO_DERECHO_ex" class="tableedit_s"><i id="_ex"
+                            class="material-icons eliminar">close</i></td>
+                      </tr>
+                      <tr class="tr_parte" id="GUARDAFANGO_DERECHO_df">
+                        <td id="GUARDAFANGO_DERECHO_nb">GUARDAFANGO DERECHO</td>
+                        <td id="GUARDAFANGO_DERECHO_acc"><select class="tableedit_d form-control editable" id="_acc">
+                            <option value="C">Cambio</option>
+                            <option value="R">Reparacion</option>
+                          </select></td>
+                        <td id="GUARDAFANGO_DERECHO_ref"></td>
+                        <td id="GUARDAFANGO_DERECHO_vu"></td>
+                        <td id="GUARDAFANGO_DERECHO_pb" class="colpsable visible"></td>
+                        <td id="GUARDAFANGO_DERECHO_pn" class="colpsable visible"></td>
+                        <td id="GUARDAFANGO_DERECHO_pl" class="colpsable visible"></td>
+                        <td id="GUARDAFANGO_DERECHO_pm" class="colpsable visible"></td>
+                        <td id="GUARDAFANGO_DERECHO_mc" class="colpsable visible"></td>
+                        <td id="GUARDAFANGO_DERECHO_ln" class="colpsable visible"></td>
+                        <td id="GUARDAFANGO_DERECHO_ex" class="tableedit_s"><i id="_ex"
+                            class="material-icons eliminar">close</i></td>
+                      </tr>
+                      <tr class="tr_parte" id="COSTADO_DERECHO_df">
+                        <td id="COSTADO_DERECHO_nb">COSTADO DERECHO</td>
+                        <td id="COSTADO_DERECHO_acc"><select class="tableedit_d form-control editable" id="_acc">
+                            <option value="C">Cambio</option>
+                            <option value="R">Reparacion</option>
+                          </select></td>
+                        <td id="COSTADO_DERECHO_ref"></td>
+                        <td id="COSTADO_DERECHO_vu"></td>
+                        <td id="COSTADO_DERECHO_pb" class="colpsable visible"></td>
+                        <td id="COSTADO_DERECHO_pn" class="colpsable visible"></td>
+                        <td id="COSTADO_DERECHO_pl" class="colpsable visible"></td>
+                        <td id="COSTADO_DERECHO_pm" class="colpsable visible"></td>
+                        <td id="COSTADO_DERECHO_mc" class="colpsable visible"></td>
+                        <td id="COSTADO_DERECHO_ln" class="colpsable visible"></td>
+                        <td id="COSTADO_DERECHO_ex" class="tableedit_s"><i id="_ex"
+                            class="material-icons eliminar">close</i></td>
+                      </tr>
+                      <tr class="tr_parte" id="GUARDAPOLVO_METALICO_TRASERO_DERECHO_df">
+                        <td id="GUARDAPOLVO_METALICO_TRASERO_DERECHO_nb">GUARDAPOLVO METALICO TRASERO DERECHO</td>
+                        <td id="GUARDAPOLVO_METALICO_TRASERO_DERECHO_acc"><select
+                            class="tableedit_d form-control editable" id="_acc">
+                            <option value="C">Cambio</option>
+                            <option value="R">Reparacion</option>
+                          </select></td>
+                        <td id="GUARDAPOLVO_METALICO_TRASERO_DERECHO_ref"></td>
+                        <td id="GUARDAPOLVO_METALICO_TRASERO_DERECHO_vu"></td>
+                        <td id="GUARDAPOLVO_METALICO_TRASERO_DERECHO_pb" class="colpsable visible"></td>
+                        <td id="GUARDAPOLVO_METALICO_TRASERO_DERECHO_pn" class="colpsable visible"></td>
+                        <td id="GUARDAPOLVO_METALICO_TRASERO_DERECHO_pl" class="colpsable visible"></td>
+                        <td id="GUARDAPOLVO_METALICO_TRASERO_DERECHO_pm" class="colpsable visible"></td>
+                        <td id="GUARDAPOLVO_METALICO_TRASERO_DERECHO_mc" class="colpsable visible"></td>
+                        <td id="GUARDAPOLVO_METALICO_TRASERO_DERECHO_ln" class="colpsable visible"></td>
+                        <td id="GUARDAPOLVO_METALICO_TRASERO_DERECHO_ex" class="tableedit_s"><i id="_ex"
+                            class="material-icons eliminar">close</i></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="editar tableedit_s col-12">
+                <div class="btn-group btn-row">
+                  <div class="row justify-content-md-center">
+                    <button id="change_valoracion"
+                      class="btn btn-secondary btn-next-five btn-yellow ui-button ui-shadow ui-corner-all ui-widget ui-button-inherit">CONTINUAR</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-step>
+
+        <mat-step>
+          You are now done.
+        </mat-step>
+      </mat-horizontal-stepper>
+    </div>
+
+
+
+
   </div>
 </div>
 <footer>
