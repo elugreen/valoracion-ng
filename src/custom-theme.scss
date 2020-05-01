@@ -14,16 +14,23 @@
 // hue. Available color palettes: https://material.io/design/color/
 $valoracion-ng-primary: mat-palette($mat-indigo);
 $valoracion-ng-accent: mat-palette($mat-indigo, A200, A100, A400);
-
-
 // The warn palette is optional (defaults to red).
 $valoracion-ng-warn: mat-palette($mat-red);
 
 // Create the theme object (a Sass map containing all of the palettes).
 $valoracion-ng-theme: mat-light-theme($valoracion-ng-primary, $valoracion-ng-accent, $valoracion-ng-warn);
 
+$dark-primary: mat-palette($mat-green);
+$dark-accent:  mat-palette($mat-yellow);
+$dark-warn:    mat-palette($mat-red);
+$dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($valoracion-ng-theme);
+
+.unicorn-dark-theme {
+    @include angular-material-theme($dark-theme);
+  }
 

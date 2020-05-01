@@ -5,108 +5,144 @@
     </div>
     <div class="sesion float-right">
       <div class="text">
-        <p class="name" id="ss_usr">robertcastro</p>
-        <p class="job visible" id="ss_rol" hidden>FHV-VALORACION</p>
-        <p class="job" id="ss_aseg">bolivar</p>
-        <p class="job visible" id="ss_edit" hidden>editar </p>
-        <p class="job visible" id="ss_idcaso" hidden>c25d5d98-e3de-43d9-95cf-a5775c5651d4</p>
+        <p class="name" id="">robertcastro</p>
+        <p class="job visible" id="" hidden>FHV-VALORACION</p>
+        <p class="job" id="">bolivar</p>
+        <p class="job visible" id="" hidden>editar </p>
+        <p class="job visible" id="" hidden>c25d5d98-e3de-43d9-95cf-a5775c5651d4</p>
         <p class="state">En línea</p>
       </div>
       <img src="../assets/img/user1.png" alt="">
     </div>
   </div>
-  <i class="material-icons session-close">keyboard_arrow_down</i>
-  <div class="button-session">
+  <i class="material-icons session-close" (click)="toggle()">keyboard_arrow_down</i>
+  <div class="button-session" *ngIf="show">
     <p>Cerrar sesión</p>
   </div>
 </header>
 <div class="main-content">
-  <div class="container-fluid borderless" >
-    <div class="init-vars"  *ngIf="currPdiv == 'select'">
+  <div class="container-fluid borderless">
+    <div class="init-vars" *ngIf="currPdiv == 'select'">
       <div class="modal-body">
         <div class="modal-content">
-          <h3 class="texto_info okinfo-title">Amparo a afectar</h3>
-          <mat-radio-group aria-label="Select an option">
-            <div class="row justify-content-between">
-              <div class="col-6">
-                <mat-radio-button value="tercero" class="btn-checkbox">Tercero</mat-radio-button>
+          <form [formGroup]="dialogFormGroup">
+
+            <h3 class="texto_info okinfo-title">Amparo a afectar</h3>
+            <mat-radio-group aria-label="Select an option" formControlName="amparo">
+              <div class="row justify-content-between">
+                <div class="col-6">
+                  <mat-radio-button value="tercero" class="btn-checkbox">Tercero</mat-radio-button>
+                </div>
+                <div class="col-6">
+                  <mat-radio-button value="asegurado" class="btn-checkbox">Asegurado</mat-radio-button>
+                </div>
               </div>
-              <div class="col-6">
-                <mat-radio-button value="asegurado" class="btn-checkbox">Asegurado</mat-radio-button>
+            </mat-radio-group>
+
+            <h3 class="texto_info">Tipo de servicio</h3>
+            <mat-radio-group aria-label="Select an option" formControlName="servicio">
+              <div class="row justify-content-between">
+                <div class="col-6">
+                  <mat-radio-button value="Publico" class="btn-checkbox">Público</mat-radio-button>
+                </div>
+                <div class="col-6">
+                  <mat-radio-button value="particular" class="btn-checkbox">particular</mat-radio-button>
+                </div>
               </div>
-            </div>
-          </mat-radio-group>
-          <h3 class="texto_info">Tipo de servicio</h3>
-          <mat-radio-group aria-label="Select an option">
-            <div class="row justify-content-between">
-              <div class="col-6">
-                <mat-radio-button value="Publico" class="btn-checkbox">Público</mat-radio-button>
+            </mat-radio-group>
+            <h3 class="texto_info">Perdida total</h3>
+            <mat-radio-group aria-label="Select an option" formControlName="perdida">
+              <div class="row justify-content-between">
+                <div class="col-6">
+                  <mat-radio-button value="si" class="btn-checkbox">Si</mat-radio-button>
+                </div>
+                <div class="col-6">
+                  <mat-radio-button value="no" class="btn-checkbox">No</mat-radio-button>
+                </div>
               </div>
-              <div class="col-6">
-                <mat-radio-button value="particular" class="btn-checkbox">particular</mat-radio-button>
-              </div>
-            </div>
-          </mat-radio-group>
-          <h3 class="texto_info">Perdida total</h3>
-          <mat-radio-group aria-label="Select an option">
-            <div class="row justify-content-between">
-              <div class="col-6">
-                <mat-radio-button value="si" class="btn-checkbox">Si</mat-radio-button>
-              </div>
-              <div class="col-6">
-                <mat-radio-button value="no" class="btn-checkbox">No</mat-radio-button>
-              </div>
-            </div>
-          </mat-radio-group>
+            </mat-radio-group>
 
 
-          <div class="buttons btn-okinfo">
-            <div class="container"><span class="ok_info" (click)="ShowPdiv('steps')">OK</span></div>
-          </div>
+            <div class="buttons btn-okinfo">
+              <div class="container"><button class="ok_info"
+                  [disabled]="(!dialogFormGroup.controls.amparo.value || !dialogFormGroup.controls.servicio.value) || (!dialogFormGroup.controls.perdida.value)"
+                  (click)="ShowPdiv('steps')">OK</button></div>
+            </div>
+          </form>
         </div>
       </div>
     </div>
-    <div class="steps"  *ngIf="currPdiv == 'steps'">
+    <div class="steps" *ngIf="currPdiv == 'steps'">
       <mat-horizontal-stepper>
         <mat-step>
           <div>
             <div class="step-1" *ngIf="currDiv == 'step-1'">7
               <div class="breadcrumb">
-                <p>Inicio / <b>Datos generales</b></p>
+                <p>Inicio / <b>Datos básicos</b></p>
               </div>
               <div class="row datos-vehiculo">
                 <div class="col-md-6">
                   <div class="container">
-                    <form>
-                      <div class="form-group group-upload">
-                        <input type="vin" class="form-control" id="vin" placeholder="VIN">
-                        <a class="vin-upload btn btn-outline-dark" (click)="open_modal(content)"><span
-                            class="material-icons"> publish</span> </a>
-                      </div>
-                      <div class="form-group">
-                        <input type="placa" class="form-control" id="placa" placeholder="Placa">
-                      </div>
-                      <div class="form-group">
-                        <input type="marca" class="form-control" id="marca" placeholder="Marca">
-                      </div>
-                      <div class="form-group">
-                        <div class="ui-selectmenu">
-                          <div id="linea-button" class="">
-                            <select class="form-control" id="linea">
-                              <option id="SANDERO [FL] DYNAMIQUE AT 1600CC 16V AA">SANDERO [FL] DYNAMIQUE AT 1600CC 16V
-                                AA
-                              </option>
-                            </select></div>
+                    <div class="form-group">
+                      <input type="siniestro" class="form-control" id="siniestro" placeholder="N° de siniestro *">
+                    </div>
+                    <div class="text-container-upload" (click)="hiddenfileinput.click()">
+                      <input style="display: none" type="file" (change)="onFileSelect($event)" #hiddenfileinput>
+                      <div class="row">
+                        <div class="col-4">
+                          <i class="material-icons backup  align-middle">backup</i>
+                        </div>
+                        <div class="col-8">
+                          <div class="textos">
+                            <p><b>Busca y selecciona</b> la imagen de la tarjeta de propiedad del vehículo</p>
+                            <p><span class="small-p">Máximo 5MB/ JPG y PNG </span></p>
+                          </div>
                         </div>
                       </div>
-                      <div class="form-group">
-                        <input type="modelo" class="form-control" id="modelo" placeholder="Modelo">
-                      </div>
-                    </form>
+                    </div>
+                    <div class="form-group group-upload">
+                      <input type="vin" class="form-control" id="vin" placeholder="VIN *">
+                    </div>
+                    <div class="form-group">
+                      <input type="marca" class="form-control" id="marca" placeholder="Marca">
+                    </div>
+                    <div class="form-group">
+                      <input type="modelo" class="form-control" id="modelo" placeholder="Modelo *">
+                    </div>
+                    <div class="form-group">
+                      <input type="linea" class="form-control" id="linea" placeholder="Linea *">
+                    </div>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="container">
+                    <div class="form-group">
+                      <input type="año" class="form-control" id="año" placeholder="Año">
+                    </div>
+                    <div class="form-group">
+                      <div id="Ciudad" class="">
+                        <select class="form-control" id="ciudad">
+                          <option id="">Ciudad *</option>
+                        </select></div>
+                    </div>
+                    <div class="form-group">
+                      <div id="taller" class="">
+                        <select class="form-control" id="taller">
+                          <option id="">Taller *</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div id="tipo_pintura-button"><select class="form-control" id="tipo_pintura">
+                          <option value="metalizada">Tipo de pintura</option>
+                          <option value="metalizada">metalizada</option>
+                          <option value="monocapa">monocapa</option>
+                          <option value="perlada">perlada</option>
+                          <option value="solido bicapa">solido bicapa</option>
+                          <option value="tricapa">tricapa</option>
+                        </select>
+                      </div>
+                    </div>
                     <div class="imagenes-vehiculos">
                       <div class="row">
                         <div class="col-4 tipo_vehiculo">
@@ -161,61 +197,12 @@
                         </div>
                       </div>
                     </div>
-                    <div class="form">
-                      <form>
-                        <div class="form-group">
-                          <div class="row">
-                            <div class="col-md-6">
-                              <div id="tipo_pintura-button"><select class="form-control" id="tipo_pintura">
-                                  <option value="metalizada">Tipo de pintura</option>
-                                  <option value="metalizada">metalizada</option>
-                                  <option value="monocapa">monocapa</option>
-                                  <option value="perlada">perlada</option>
-                                  <option value="solido bicapa">solido bicapa</option>
-                                  <option value="tricapa">tricapa</option>
-                                </select>
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                              <div id="color"><select class="form-control" id="color">
-                                  <option value="metalizada">Color del vehículo</option>
-                                  <option value="Rojo">Rojo</option>
-                                  <option value="Azul">Azul</option>
-                                  <option value="Negro">Negro</option>
-                                  <option value="Gris">Gris</option>
-                                </select>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                    <div class="form-group">
-                      <input type="valor_asegurado" class="form-control" id="valor_asegurado"
-                        placeholder="Valor Asegurado">
-                    </div>
-                    <div class="form-group">
-                      <div class="ui-selectmenu">
-                        <div id="Ciudad" class="">
-                          <select class="form-control" id="ciudad">
-                            <option id="">Ciudad</option>
-                          </select></div>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="ui-selectmenu">
-                        <div id="taller" class="">
-                          <select class="form-control" id="taller">
-                            <option id="">Taller</option>
-                          </select></div>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
               <div class="row">
-                <div class="col text-center">
-                  <button class="btn btn-warning" (click)="ShowDiv('step-2')">CONTINUAR</button>
+                <div class="col btn-container text-center">
+                  <button class="btn btn-warning" (click)="ShowDiv('step-2')" matStepperNext>CONTINUAR</button>
                 </div>
               </div>
               <ng-template #content let-modal>
@@ -228,9 +215,7 @@
                   <div class="text-container-upload">
                     <i class="material-icons backup">backup</i>
                     <p>Carga la imagen de la tarjeta de propiedad del vehiculo</p>
-                    <input style="display: none" type="file" (change)="onFileSelect($event)" #hiddenfileinput>
 
-                    <span class="upload_link" (click)="hiddenfileinput.click()">Buscar en tu equipo</span>
                   </div>
                 </div>
                 <div class="modal-footer">
@@ -238,222 +223,276 @@
                 </div>
               </ng-template>
             </div>
-            <div class="step-2" *ngIf="currDiv == 'step-2'">
-              <div class="col-12 image-container">
-                <div class="top-div">
-                  <img class="cenital-view" src="../assets/img/cenital.png" alt="">
-                </div>
-                <div class="buttons">
-                  <button type="button" class="btn-before">ATRÁS</button>
-                  <button type="button" class="btn-continue disabled">CONTINUAR</button>
-                </div>
-              </div>
-              <button mat-button class="btn btn-warning" (click)="ShowDiv('step-1')">Back</button>
-              <button mat-button class="btn btn-warning" matStepperNext
-                (click)="ShowDiv('step-3')">Next</button>
-            </div>
           </div>
         </mat-step>
         <mat-step>
-          <div class="step-3" *ngIf="currDiv == 'step-3'">
-            <div class="table-container">
-              <mat-form-field>
-                <mat-label>Agregar piezas</mat-label>
-                <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
-              </mat-form-field>
-              <table mat-table [dataSource]="dataSource">
+          <div class="step-2" *ngIf="currDiv == 'step-2'">
+            <div class="breadcrumb">
+              <p>Inicio / <b>Zonas afectadas</b></p>
+            </div>
+            <div class="col-12">
+              <div class="contenedor">
+                <mat-tab-group>
+                  <mat-tab label="ZONAS AFECTADAS">
+                    <div class="row top-div-tabs">
+                      <div class="col-md-6 image-container">
+                        <div class="top-div">
+                          <img class="cenital-view" src="../assets/img/cenital.png" alt="">
+                          <div *ngFor="let add of adds" [class]="'picture '+ add.position"
+                            (click)="add.status=!add.status ; changeClass($event);">
+                            <mat-icon class="add-picture">
+                              {{ add.status?'camera_alt' : 'check'  }}
+                            </mat-icon>
+                            <input style="display: none" type="file" (change)="onFileSelect($event)" #hiddenfileinput>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6 upload">
+                        <p class="archivos">Sube todos tus archivos</p>
+                        <div class="text-container-upload">
+                          <input style="display: none" type="file" (change)="onFileSelect($event)" #hiddenfileinput>
+                          <div class="row">
+                            <div class="col-4 col-md-12">
+                              <i class="material-icons backup  align-middle">backup</i>
+                            </div>
+                            <div class="col-8 col-md-12">
+                              <div class="textos">
+                                <p><span class="link" (click)="hiddenfileinput.click()">Busca en tu equipo</span> y
+                                  escoge los archivos que quieres subir</p>
+                                <p><span class="small-p">Archivos soportados JPG, JEPG y PNG <br>Máximo 5MB </span></p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </mat-tab>
 
-                <!-- Checkbox Column -->
-                <ng-container matColumnDef="select">
-                  <th mat-header-cell *matHeaderCellDef>
-                    <mat-checkbox (change)="$event ? masterToggle() : null"
-                      [checked]="selection.hasValue() && isAllSelected()"
-                      [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
-                    </mat-checkbox>
-                  </th>
-                  <td mat-cell *matCellDef="let row">
-                    <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
-                      [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
-                    </mat-checkbox>
-                  </td>
-                </ng-container>
-
-
-                <!-- Name Column -->
-                <ng-container matColumnDef="Pieza">
-                  <th mat-header-cell *matHeaderCellDef> Pieza </th>
-                  <td mat-cell *matCellDef="let element"> {{element.Pieza}} </td>
-                </ng-container>
-
-
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
-                </tr>
-              </table>
+                  <mat-tab label="GALERÍA"></mat-tab>
+                </mat-tab-group>
+              </div>
             </div>
             <div class="row">
-              <div class="col text-center">
-                <button class="btn btn-warning" (click)="ShowDiv('step-4')">CONTINUAR</button>
+              <div class="col btn-container text-center">
+                <button mat-button class="btn btn-light" matStepperPrevious (click)="ShowDiv('step-1')">Atrás</button>
+                <button mat-button class="btn btn-warning" (click)="ShowDiv('step-3')">Continuar</button>
+              </div>
+            </div>
+          </div>
+          <div class="step-3" *ngIf="currDiv == 'step-3'">
+            <div class="breadcrumb">
+              <p>Inicio / <b>Valoración</b></p>
+            </div>
+            <div class="table-container example-container mat-elevation-z8 col-12">
+              <h6><b>Busca el nombre del repuesto que deseas agregar</b></h6>
+              <form class="example-form" [formGroup]="filterForm">
+                <mat-form-field class="example-full-width">
+                  <mat-label>Agregar piezas</mat-label>
+                  <input ype="text" placeholder="Agregar piezas" aria-label="Number" matInput [formControl]="myControl"
+                    [matAutocomplete]="auto" formControlName="filter" matInput (keyup)="applyFilter($event)">
+                  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                      {{option.name}}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+              </form>
+
+              <div class="example-container mat-elevation-z8">
+                <table mat-table [dataSource]="dataSource">
+
+                  <!-- Name Column -->
+                  <ng-container matColumnDef="select">
+                    <th mat-header-cell *matHeaderCellDef>
+                      <mat-checkbox (change)="$event ? masterToggle() : null"
+                        [checked]="selection.hasValue() && isAllSelected()"
+                        [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+                      </mat-checkbox>
+                    </th>
+                    <td mat-cell *matCellDef="let row">
+                      <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+                        [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+                      </mat-checkbox>
+                    </td>
+                  </ng-container>
+
+
+                  <!-- Position Column -->
+                  <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef> Nombre del repuesto </th>
+                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                  </ng-container>
+
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col btn-container text-center">
+                <button mat-button class="btn btn-light" (click)="ShowDiv('step-2')">Atrás</button>
+                <button mat-button class="btn btn-warning" (click)="ShowDiv('step-4')">Continuar</button>
               </div>
             </div>
           </div>
           <div class="step-4" *ngIf="currDiv == 'step-4'">
-            <div class="col-12 main-container-table">
+            <div class="breadcrumb">
+              <p>Inicio / <b>Valoración</b></p>
+            </div>
+            <div class="col-12 table-valoracion-container">
               <div class="row valoracion-texto">
-                <div id="encabezado_resultado" class="col-8">
-                  <h4>Valoración</h4>
-                  <p id="informacion_placa"><b>PLACA:</b> UTN539</p>
-                  <p id="informacion_marca"><b>MARCA:</b> RENAULT</p>
-                  <p id="informacion_linea"><b>LINEA:</b> SANDERO [FL] DYNAMIQUE AT 1600CC 16V AA</p>
-                </div>
-                <div class="col-4">
+                <div id="encabezado_resultado" class="col-12">
                   <div class="row">
-                    <div class="col-3">
-                      <a href="   ">
-                        <i class="material-icons share" style="display: none;">share</i>
-                      </a>
+                    <div class="col-8">
+                      <div class="row">
+                        <div class="col-md-4">
+                          <p id="informacion_placa"><b>PLACA:</b> UTN539</p>
+                        </div>
+                        <div class="col-md-4">
+                          <p id="informacion_marca"><b>MARCA:</b>NIZAN</p>
+                          <p id="informacion_linea"><b>MODELO:</b>XTRAIL</p>
+                        </div>
+                        <div class="col-md-4">
+                          <p id="informacion_marca"><b>LÍNEA:</b> D2</p>
+                          <p id="informacion_linea"><b>AÑO:</b> 2017</p>
+                        </div>
+                      
+                    </div>
                     </div>
                     <div class="col-3">
-                      <a href="   ">
-                        <i class="material-icons pdf" id="print">picture_as_pdf</i>
-                      </a>
+                      <div class="perdida-div">
+                        <div class="unicorn-dark-theme">
+                          <mat-progress-spinner class="example-margin " [color]="color" [mode]="mode" [value]="value">
+                          </mat-progress-spinner>
+                          <div class="texto-perdida">
+                            <p class="valor" [ngStyle]="{'color' : pcolor}">{{value}} %</p>
+                            <p class="texto" [ngStyle]="{'color' : pcolor}">perdida</p>
+                          </div>
+                      </div>
+                      </div>
                     </div>
-                    <div class="col-3">
-                      <a href="   ">
-                        <i id="edit_table" class="editar material-icons pdf">mode_edit</i>
-                      </a>
-                    </div>
-                    <div class="col-3">
-                      <a href="   ">
-                        <i id="expand_table" class="editar material-icons pdf">fullscreen_exit</i>
-                      </a>
-                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
 
+
+          <div class="edit" *ngIf="currDiv == 'edit'">
+            <div class="breadcrumb">
+              <p>Inicio / <b>Valoración</b></p>
+            </div>
+            <div class="col-12 table-edicion-container">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
+                    <div class="table-responsive">
+                      <h3>Mano de obra</h3>
+                      <table class="table table-striped" id="table_detalle_mo">
+                        <tr class="tr_parte" id="Mano_obra_df">
+                          <td class="text-center" scope="col" id="Mano_obra_descripcion">Mano obra</td>
+                          <td scope="col"><input class="iditar2 text-center horas_trabajo_tecnico" type="text"
+                              id="Mano_obra_horas" value="5.3"></td>
+                          <td scope="col"><input class="iditar2 text-center" type="text" id="Mano_obra_valorhora"
+                              value="36000"></td>
+                          <td class="text-center valor_trabajo_tecnico" scope="col" id="Mano_obra_total">$ 191.472
+                            COP</td>
+                        </tr>
+                      </table>
+                    </div>
                   </div>
                 </div>
               </div>
               <div class="row">
-                <div class="table-responsive">
-                  <table id="table_rm" class="table table-striped">
-                    <thead>
-                      <tr>
-                        <th scope="col">Pieza</th>
-                        <th scope="col" style="min-width:150px">Accion</th>
-                        <th scope="col">Referencia</th>
-                        <th scope="col">Valor unitario</th>
-
-                        <th class="colpsable visible" scope="col">Probabilidad</th>
-                        <th class="colpsable visible" scope="col">Precio Negociación</th>
-                        <th class="colpsable visible" scope="col">Precio de lista</th>
-                        <th class="colpsable visible" scope="col">Precio minimo</th>
-                        <th class="colpsable visible" scope="col">Marca</th>
-                        <th class="colpsable visible" scope="col">Línea</th>
-
-                        <th class="tableedit_s" scope="col">Eliminar</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr class="tr_parte" id="CINTA_DECORATIVA_ANTERIOR_PUERTA_TRASERO_DERECHO_df">
-                        <td id="CINTA_DECORATIVA_ANTERIOR_PUERTA_TRASERO_DERECHO_nb">CINTA DECORATIVA ANTERIOR PUERTA
-                          TRASERO DERECHO</td>
-                        <td id="CINTA_DECORATIVA_ANTERIOR_PUERTA_TRASERO_DERECHO_acc"><select
-                            class="tableedit_d form-control editable" id="_acc">
-                            <option value="C">Cambio</option>
-                            <option value="R">Reparacion</option>
-                          </select></td>
-                        <td id="CINTA_DECORATIVA_ANTERIOR_PUERTA_TRASERO_DERECHO_ref">No Encontrada</td>
-                        <td id="CINTA_DECORATIVA_ANTERIOR_PUERTA_TRASERO_DERECHO_vu">$ 0 COP</td>
-                        <td id="CINTA_DECORATIVA_ANTERIOR_PUERTA_TRASERO_DERECHO_pb" class="colpsable visible">0</td>
-                        <td id="CINTA_DECORATIVA_ANTERIOR_PUERTA_TRASERO_DERECHO_pn" class="colpsable visible">$ 0 COP
-                        </td>
-                        <td id="CINTA_DECORATIVA_ANTERIOR_PUERTA_TRASERO_DERECHO_pl" class="colpsable visible">$ 0 COP
-                        </td>
-                        <td id="CINTA_DECORATIVA_ANTERIOR_PUERTA_TRASERO_DERECHO_pm" class="colpsable visible">$ 0 COP
-                        </td>
-                        <td id="CINTA_DECORATIVA_ANTERIOR_PUERTA_TRASERO_DERECHO_mc" class="colpsable visible">No
-                          Encontrada</td>
-                        <td id="CINTA_DECORATIVA_ANTERIOR_PUERTA_TRASERO_DERECHO_ln" class="colpsable visible">No
-                          Encontrada</td>
-                        <td id="CINTA_DECORATIVA_ANTERIOR_PUERTA_TRASERO_DERECHO_ex" class="tableedit_s"><i id="_ex"
-                            class="material-icons eliminar">close</i></td>
-                      </tr>
-                      <tr class="tr_parte" id="GUARDAFANGO_DERECHO_df">
-                        <td id="GUARDAFANGO_DERECHO_nb">GUARDAFANGO DERECHO</td>
-                        <td id="GUARDAFANGO_DERECHO_acc"><select class="tableedit_d form-control editable" id="_acc">
-                            <option value="C">Cambio</option>
-                            <option value="R">Reparacion</option>
-                          </select></td>
-                        <td id="GUARDAFANGO_DERECHO_ref"></td>
-                        <td id="GUARDAFANGO_DERECHO_vu"></td>
-                        <td id="GUARDAFANGO_DERECHO_pb" class="colpsable visible"></td>
-                        <td id="GUARDAFANGO_DERECHO_pn" class="colpsable visible"></td>
-                        <td id="GUARDAFANGO_DERECHO_pl" class="colpsable visible"></td>
-                        <td id="GUARDAFANGO_DERECHO_pm" class="colpsable visible"></td>
-                        <td id="GUARDAFANGO_DERECHO_mc" class="colpsable visible"></td>
-                        <td id="GUARDAFANGO_DERECHO_ln" class="colpsable visible"></td>
-                        <td id="GUARDAFANGO_DERECHO_ex" class="tableedit_s"><i id="_ex"
-                            class="material-icons eliminar">close</i></td>
-                      </tr>
-                      <tr class="tr_parte" id="COSTADO_DERECHO_df">
-                        <td id="COSTADO_DERECHO_nb">COSTADO DERECHO</td>
-                        <td id="COSTADO_DERECHO_acc"><select class="tableedit_d form-control editable" id="_acc">
-                            <option value="C">Cambio</option>
-                            <option value="R">Reparacion</option>
-                          </select></td>
-                        <td id="COSTADO_DERECHO_ref"></td>
-                        <td id="COSTADO_DERECHO_vu"></td>
-                        <td id="COSTADO_DERECHO_pb" class="colpsable visible"></td>
-                        <td id="COSTADO_DERECHO_pn" class="colpsable visible"></td>
-                        <td id="COSTADO_DERECHO_pl" class="colpsable visible"></td>
-                        <td id="COSTADO_DERECHO_pm" class="colpsable visible"></td>
-                        <td id="COSTADO_DERECHO_mc" class="colpsable visible"></td>
-                        <td id="COSTADO_DERECHO_ln" class="colpsable visible"></td>
-                        <td id="COSTADO_DERECHO_ex" class="tableedit_s"><i id="_ex"
-                            class="material-icons eliminar">close</i></td>
-                      </tr>
-                      <tr class="tr_parte" id="GUARDAPOLVO_METALICO_TRASERO_DERECHO_df">
-                        <td id="GUARDAPOLVO_METALICO_TRASERO_DERECHO_nb">GUARDAPOLVO METALICO TRASERO DERECHO</td>
-                        <td id="GUARDAPOLVO_METALICO_TRASERO_DERECHO_acc"><select
-                            class="tableedit_d form-control editable" id="_acc">
-                            <option value="C">Cambio</option>
-                            <option value="R">Reparacion</option>
-                          </select></td>
-                        <td id="GUARDAPOLVO_METALICO_TRASERO_DERECHO_ref"></td>
-                        <td id="GUARDAPOLVO_METALICO_TRASERO_DERECHO_vu"></td>
-                        <td id="GUARDAPOLVO_METALICO_TRASERO_DERECHO_pb" class="colpsable visible"></td>
-                        <td id="GUARDAPOLVO_METALICO_TRASERO_DERECHO_pn" class="colpsable visible"></td>
-                        <td id="GUARDAPOLVO_METALICO_TRASERO_DERECHO_pl" class="colpsable visible"></td>
-                        <td id="GUARDAPOLVO_METALICO_TRASERO_DERECHO_pm" class="colpsable visible"></td>
-                        <td id="GUARDAPOLVO_METALICO_TRASERO_DERECHO_mc" class="colpsable visible"></td>
-                        <td id="GUARDAPOLVO_METALICO_TRASERO_DERECHO_ln" class="colpsable visible"></td>
-                        <td id="GUARDAPOLVO_METALICO_TRASERO_DERECHO_ex" class="tableedit_s"><i id="_ex"
-                            class="material-icons eliminar">close</i></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              <div class="editar tableedit_s col-12">
-                <div class="btn-group btn-row">
-                  <div class="row justify-content-md-center">
-                    <button id="change_valoracion"
-                      class="btn btn-secondary btn-next-five btn-yellow ui-button ui-shadow ui-corner-all ui-widget ui-button-inherit">CONTINUAR</button>
+                <div class="col-12">
+                  <div class="row">
+                    <div class="table-responsive">
+                      <h3>Pintura</h3>
+                      <table class="table table-striped" id="table_detalle_mp">
+                        <thead>
+                          <tr>
+                            <th scope="col">Tipo de pintura</th>
+                            <th scope="col">Unidades de Pintura</th>
+                            <th scope="col">Horas de pintura</th>
+                            <th scope="col">Valor Hora</th>
+                            <th scope="col">Materiales pintura</th>
+                            <th scope="col">Total</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <div class="ui-selectmenu">
+                                <div id="tipo_de_pintura-button" class="" aria-disabled="true"><select
+                                    class="form-control" id="tipo_de_pintura">
+                                    <option value="metalizada">metalizada</option>
+                                    <option value="monocapa">monocapa</option>
+                                    <option value="perlada">perlada</option>
+                                    <option value="solido bicapa">solido bicapa</option>
+                                    <option value="tricapa">tricapa</option>
+                                  </select>
+                                </div>
+                              </div>
+                            </td>
+                            <td>
+                              <div
+                                class="ui-textinput ui-corner-all ui-shadow-inset ui-textinput-text ui-state-disabled ui-body-inherit mobile-textinput-disabled">
+                                <input class="iditar2 text-center" type="text" id="unidades_de_pintura">
+                              </div>
+                            </td>
+                            <td>
+                              <div
+                                class="ui-textinput ui-corner-all ui-shadow-inset ui-textinput-text ui-state-disabled ui-body-inherit mobile-textinput-disabled">
+                                <input class="iditar2 text-center" type="text" id="horas_de_pintura"></div>
+                            </td>
+                            <td>
+                              <div
+                                class="ui-textinput ui-corner-all ui-shadow-inset ui-textinput-text ui-state-disabled ui-body-inherit mobile-textinput-disabled">
+                                <input class="iditar2 text-center" type="text" id="valor_hora_pintura">
+                              </div>
+                            </td>
+                            <td>
+                              <div
+                                class="ui-textinput ui-corner-all ui-shadow-inset ui-textinput-text ui-state-disabled ui-body-inherit mobile-textinput-disabled">
+                                <input class="iditar2 text-center" type="text" id="materiales_pintura">
+                              </div>
+                            </td>
+                            <td id="valor_total_pintura" class="text-center">$ 0 COP</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
+              </div>
+            </div>
+            <div class="col-md-12 contenedor-planes edit-plan">
+              <div class="row">
+                <div class="col-md-12 planes">
+                  <div class="titulo obra">
+                    <h3>Valor Mano de obra</h3>
+                  </div>
+                  <div class="text-container">
+                    <p class="tiempo">Tiempo estimado </p>
+                    <p id="tiempo_total_d">5.30 horas</p>
+                    <p></p>
+                    <p class="valor" id="valor_tiempo_d">$ 191.472 COP</p>
+                    <p class="iva">Valores sin IVA</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col btn-container text-center">
+                <button mat-button class="btn btn-warning" (click)="ShowDiv('step-4')">Continuar</button>
               </div>
             </div>
           </div>
         </mat-step>
 
-        <mat-step>
-          You are now done.
-        </mat-step>
       </mat-horizontal-stepper>
     </div>
-
-
-
-
   </div>
 </div>
 <footer>
