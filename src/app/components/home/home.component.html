@@ -26,7 +26,6 @@
       <div class="modal-body">
         <div class="modal-content">
           <form [formGroup]="dialogFormGroup">
-
             <h3 class="texto_info okinfo-title">Amparo a afectar</h3>
             <mat-radio-group aria-label="Select an option" formControlName="amparo">
               <div class="row justify-content-between">
@@ -50,7 +49,7 @@
                 </div>
               </div>
             </mat-radio-group>
-            <h3 class="texto_info">Perdida total</h3>
+            <h3 class="texto_info">Pérdida total</h3>
             <mat-radio-group aria-label="Select an option" formControlName="perdida">
               <div class="row justify-content-between">
                 <div class="col-6">
@@ -63,20 +62,21 @@
             </mat-radio-group>
 
 
-            <div class="buttons btn-okinfo">
-              <div class="container"><button class="ok_info"
-                  [disabled]="(!dialogFormGroup.controls.amparo.value || !dialogFormGroup.controls.servicio.value) || (!dialogFormGroup.controls.perdida.value)"
-                  (click)="ShowPdiv('steps')">OK</button></div>
-            </div>
+
           </form>
         </div>
+      </div>
+      <div class="buttons btn-okinfo">
+        <div class="container"><button class="ok_info btn btn-warning"
+            [disabled]="(!dialogFormGroup.controls.amparo.value || !dialogFormGroup.controls.servicio.value) || (!dialogFormGroup.controls.perdida.value)"
+            (click)="ShowPdiv('steps')">CONTINUAR</button></div>
       </div>
     </div>
     <div class="steps" *ngIf="currPdiv == 'steps'">
       <mat-horizontal-stepper>
         <mat-step>
           <div>
-            <div class="step-1" *ngIf="currDiv == 'step-1'">7
+            <div class="step-1" *ngIf="currDiv == 'step-1'">
               <div class="breadcrumb">
                 <p>Inicio / <b>Datos básicos</b></p>
               </div>
@@ -100,8 +100,51 @@
                         </div>
                       </div>
                     </div>
+                    <div class="loading-container success dotted">
+
+                      <div class="row">
+                        <div class="col-3 col">
+                          <span class="jpg">jpg</span>
+                        </div>
+                        <div class="col-5 col">
+                          <p>Tarjeta de propiedad</p>
+                        </div>
+                        <div class="col-2 col">
+                          <p class="porcentaje">100%</p>
+                        </div>
+                        <div class="col-2 col">
+                          <span class="material-icons">
+                            close
+                          </span>
+                        </div>
+                      </div>
+                      <div class="row progress-bar-porcent">
+                        <div class="col-12">
+                          <mat-progress-bar mode="determinate" value="100"></mat-progress-bar>
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="text-container-upload" (click)="hiddenfileinput.click()">
+                      <input style="display: none" type="file" (change)="onFileSelect($event)" #hiddenfileinput>
+                      <div class="row">
+                        <div class="col-4">
+                          <i class="material-icons backup  align-middle">backup</i>
+                        </div>
+                        <div class="col-8">
+                          <div class="spinner-border" role="status">
+                            <span class="sr-only">Loading...</span>
+                          </div>
+                          <p class="spinner-text">Cargando</p>
+                          <p>Espera un minuto mientras se carga el archivo</p>
+                        </div>
+                      </div>
+                    </div>
                     <div class="form-group group-upload">
                       <input type="vin" class="form-control" id="vin" placeholder="VIN *">
+                    </div>
+                    <div class="form-group">
+                      <input type="marca" class="form-control" id="placa" placeholder="Placa *">
                     </div>
                     <div class="form-group">
                       <input type="marca" class="form-control" id="marca" placeholder="Marca">
@@ -144,6 +187,7 @@
                       </div>
                     </div>
                     <div class="imagenes-vehiculos">
+                      <p class="regular">Selecciona el tipo de vehículo</p>
                       <div class="row">
                         <div class="col-4 tipo_vehiculo">
                           <div class="container-col seleccionable active" id="hatchback">
@@ -261,8 +305,82 @@
                                   escoge los archivos que quieres subir</p>
                                 <p><span class="small-p">Archivos soportados JPG, JEPG y PNG <br>Máximo 5MB </span></p>
                               </div>
+
+
                             </div>
                           </div>
+                        </div>
+                        <div class="loading-container success">
+                          <div class="row">
+                            <div class="col-3 col">
+                              <span class="jpg">jpg</span>
+                            </div>
+                            <div class="col-5 col">
+                              <p>Archivo 1</p>
+                            </div>
+                            <div class="col-2 col">
+                              <p class="porcentaje">100%</p>
+                            </div>
+                            <div class="col-2 col">
+                              <span class="material-icons">
+                                close
+                              </span>
+                            </div>
+                          </div>
+                          <div class="row progress-bar-porcent">
+                            <div class="col-12">
+                              <mat-progress-bar mode="determinate" value="100"></mat-progress-bar>
+                            </div>
+                          </div>
+
+                        </div>
+                        <div class="loading-container warning">
+                          <div class="row">
+                            <div class="col-3 col">
+                              <span class="jpg">jpg</span>
+                            </div>
+                            <div class="col-5 col">
+                              <p>Archivo 2</p>
+                            </div>
+                            <div class="col-2 col">
+                              
+                            </div>
+                            <div class="col-2 col">
+                              <span class="material-icons">
+                                error
+                              </span>
+                            </div>
+                          </div>
+                          <div class="row progress-bar-porcent">
+                            <div class="col-12">
+                              <mat-progress-bar mode="determinate" value="71"></mat-progress-bar>
+                            </div>
+                          </div>
+
+                        </div>
+                        <div class="loading-container error">
+                          <div class="row">
+                            <div class="col-3 col">
+                              <span class="jpg">jpg</span>
+                            </div>
+                            <div class="col-5 col">
+                              <p>Archivo 3</p>
+                            </div>
+                            <div class="col-2 col">
+                              
+                            </div>
+                            <div class="col-2 col">
+                              <span class="material-icons">
+                                close
+                              </span>
+                            </div>
+                          </div>
+                          <div class="row progress-bar-porcent">
+                            <div class="col-12">
+                              <mat-progress-bar mode="determinate" value="10"></mat-progress-bar>
+                            </div>
+                          </div>
+
                         </div>
                       </div>
                     </div>
@@ -323,6 +441,7 @@
                     <td mat-cell *matCellDef="let element"> {{element.name}} </td>
                   </ng-container>
 
+
                   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                 </table>
@@ -331,10 +450,13 @@
             <div class="row">
               <div class="col btn-container text-center">
                 <button mat-button class="btn btn-light" (click)="ShowDiv('step-2')">Atrás</button>
-                <button mat-button class="btn btn-warning" (click)="ShowDiv('step-4')">Continuar</button>
+                <button mat-button class="btn btn-warning" (click)="ShowDiv('step-4')" matStepperNext>Continuar</button>
               </div>
             </div>
           </div>
+
+        </mat-step>
+        <mat-step>
           <div class="step-4" *ngIf="currDiv == 'step-4'">
             <div class="breadcrumb">
               <p>Inicio / <b>Valoración</b></p>
@@ -343,42 +465,155 @@
               <div class="row valoracion-texto">
                 <div id="encabezado_resultado" class="col-12">
                   <div class="row">
-                    <div class="col-8">
+                    <div class="col-8 col-md-10">
                       <div class="row">
                         <div class="col-md-4">
-                          <p id="informacion_placa"><b>PLACA:</b> UTN539</p>
+                          <p id="informacion_placa" class="info_detalle">PLACA: UTN539</p>
                         </div>
                         <div class="col-md-4">
-                          <p id="informacion_marca"><b>MARCA:</b>NIZAN</p>
-                          <p id="informacion_linea"><b>MODELO:</b>XTRAIL</p>
+                          <p id="informacion_marca" class="info_general">Marca: NIZAN</p>
+                          <p id="informacion_linea" class="info_general">Modelo: XTRAIL</p>
                         </div>
                         <div class="col-md-4">
-                          <p id="informacion_marca"><b>LÍNEA:</b> D2</p>
-                          <p id="informacion_linea"><b>AÑO:</b> 2017</p>
+                          <p id="informacion_marca" class="info_general">Línea: D2</p>
+                          <p id="informacion_linea" class="info_general">Año: 2017</p>
                         </div>
-                      
+
+                      </div>
                     </div>
-                    </div>
-                    <div class="col-3">
-                      <div class="perdida-div">
+                    <div class="col-4 col-md-2 float-right">
+                      <div class="perdida-div float-right">
                         <div class="unicorn-dark-theme">
                           <mat-progress-spinner class="example-margin " [color]="color" [mode]="mode" [value]="value">
                           </mat-progress-spinner>
                           <div class="texto-perdida">
                             <p class="valor" [ngStyle]="{'color' : pcolor}">{{value}} %</p>
-                            <p class="texto" [ngStyle]="{'color' : pcolor}">perdida</p>
+                            <p class="texto" [ngStyle]="{'color' : pcolor}">pérdida</p>
                           </div>
-                      </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                  
+
                 </div>
               </div>
             </div>
+            <div class="col-12 table-valoracion-container">
+              <div class="row table-edition">
+                <div class="col-5 col-md-7">
+                  <p class="info_detalle">Valoración</p>
+                </div>
+                <div class="col-7 col-md-5">
+                  <div class="row">
+                    <div class="col-4 buttons-table-container"> <button>
+                        <span class="material-icons">
+                          save
+                        </span>
+
+                        <p class="button-table">Guardar</p>
+                      </button></div>
+                    <div class="col-4 buttons-table-container"> <button>
+                        <span class="material-icons">
+                          delete
+                        </span>
+                        <p class="button-table">Eliminar</p>
+                      </button></div>
+                    <div class="col-4 buttons-table-container"> <button>
+                        <span class="material-icons">
+                          picture_as_pdf
+                        </span>
+                        <p class="button-table">Exportar</p>
+                      </button></div>
+                  </div>
+
+                </div>
+              </div>
+              <div class="row">
+                <div class="table-responsive">
+                  <table id="table_rm" class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Pieza</th>
+                        <th scope="col">Accion</th>
+                        <th scope="col">Referencia</th>
+                        <th scope="col">Valor unitario</th>
+                        <th scope="col">Probabilidad</th>
+                        <th scope="col">Precio Negociación</th>
+                        <th scope="col">Precio de lista</th>
+                        <th scope="col">Precio minimo</th>
+                        <th scope="col">Marca</th>
+                        <th scope="col">Línea</th>
+                        <th scope="col">Eliminar</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let pieza of Piezas">
+                        <td>{{pieza.pieza}}</td>
+                        <td>
+                          <select class="tableedit_d form-control editable" id="_acc">
+                            <option value="C">Cambio</option>
+                            <option value="R">Reparacion</option>
+                          </select>
+                        </td>
+                        <td>{{pieza.referencia}}</td>
+                        <td>{{pieza.unitario}}</td>
+                        <td>{{pieza.Probabilidad}}</td>
+                        <td>{{pieza.negociacion}}</td>
+                        <td>{{pieza.lista}}</td>
+                        <td>{{pieza.minimo}}</td>
+                        <td>{{pieza.marca}}</td>
+                        <td>{{pieza.linea}}</td>
+                        <td>
+                          <i id="_ex" class="material-icons eliminar">close</i>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12 contenedor-planes">
+              <div class="row">
+                <div class="col-md-4 planes">
+                  <div class="titulo">
+                    <h3>Valor de Repuestos</h3>
+                  </div>
+                  <div class="text-container">
+                    <p class="tiempo">Tiempo estimado 5 días</p>
+                    <p class="valor" id="valor_repuestos">$ 2.381.646 COP</p>
+                    <p class="iva">Valores sin IVA</p>
+                  </div>
+                </div>
+                <div class="col-md-4 planes">
+                  <div class="titulo obra">
+                    <h3>Valor Mano de obra</h3>
+                    <i id="edit" class="material-icons edit editar" (click)="ShowDiv('edit')">edit</i>
+                  </div>
+                  <div class="text-container">
+                    <p class="tiempo">Tiempo estimado 10 horas</p>
+                    <p class="valor" id="valor_tiempo">$ 337.342 COP</p>
+                    <p class="iva">Valores sin IVA</p>
+                  </div>
+                </div>
+                <div class="col-md-4 planes total">
+                  <div class="titulo">
+                    <h3>TOTAL VALORACIÓN</h3>
+                  </div>
+                  <div class="text-container">
+                    <p class="tiempo">Tiempo en reparación: <b id="tiempo_estimado">9 días</b></p>
+                    <p class="valor-total" id="total_valoracion">$ 2.718.988 COP</p>
+                    <p class="iva">Valores sin IVA</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col btn-container text-center">
+                <button mat-button class="btn btn-light" (click)="ShowDiv('step-3')" matStepperPrevious>Atrás</button>
+                <button mat-button class="btn btn-warning" (click)="ShowDiv('step-5')">Continuar</button>
+              </div>
+            </div>
           </div>
-
-
           <div class="edit" *ngIf="currDiv == 'edit'">
             <div class="breadcrumb">
               <p>Inicio / <b>Valoración</b></p>
@@ -389,16 +624,36 @@
                   <div class="row">
                     <div class="table-responsive">
                       <h3>Mano de obra</h3>
-                      <table class="table table-striped" id="table_detalle_mo">
-                        <tr class="tr_parte" id="Mano_obra_df">
-                          <td class="text-center" scope="col" id="Mano_obra_descripcion">Mano obra</td>
-                          <td scope="col"><input class="iditar2 text-center horas_trabajo_tecnico" type="text"
-                              id="Mano_obra_horas" value="5.3"></td>
-                          <td scope="col"><input class="iditar2 text-center" type="text" id="Mano_obra_valorhora"
-                              value="36000"></td>
-                          <td class="text-center valor_trabajo_tecnico" scope="col" id="Mano_obra_total">$ 191.472
-                            COP</td>
-                        </tr>
+                      <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th scope="col">Tipo de pintura</th>
+                            <th scope="col">Horas de trabajo</th>
+                            <th scope="col">Valor de mano de obra </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+
+                            <td class="text-center" scope="col" id="Mano_obra_descripcion">Mano de Obra Lamina</td>
+                            <td scope="col">
+                              <input type="text" id="Mano_obra_horas" value="5.3">
+                            </td>
+                            <td scope="col">
+                              <input type="text" value="36000">
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="text-center" scope="col">Mano de Obra Mecanica</td>
+                            <td scope="col">
+                              <input type="text" id="Mano_obra_horas" value="5.3">
+                            </td>
+                            <td scope="col">
+                              <input type="text" value="36000">
+                            </td>
+                          </tr>
+
+                        </tbody>
                       </table>
                     </div>
                   </div>
@@ -409,55 +664,55 @@
                   <div class="row">
                     <div class="table-responsive">
                       <h3>Pintura</h3>
-                      <table class="table table-striped" id="table_detalle_mp">
+                      <table class="table table-striped">
                         <thead>
                           <tr>
-                            <th scope="col">Tipo de pintura</th>
-                            <th scope="col">Unidades de Pintura</th>
-                            <th scope="col">Horas de pintura</th>
-                            <th scope="col">Valor Hora</th>
-                            <th scope="col">Materiales pintura</th>
-                            <th scope="col">Total</th>
+                            <th scope="col">Areas</th>
+                            <th scope="col">Horas </th>
+                            <th scope="col">Valor Hora </th>
+                            <th scope="col">Materiales de Pintura</th>
+                            <th scope="col">Total (COP)</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
                             <td>
-                              <div class="ui-selectmenu">
-                                <div id="tipo_de_pintura-button" class="" aria-disabled="true"><select
-                                    class="form-control" id="tipo_de_pintura">
-                                    <option value="metalizada">metalizada</option>
-                                    <option value="monocapa">monocapa</option>
-                                    <option value="perlada">perlada</option>
-                                    <option value="solido bicapa">solido bicapa</option>
-                                    <option value="tricapa">tricapa</option>
-                                  </select>
-                                </div>
+                              <input type="text" id="Mano_obra_horas" value="5.3">
+                            </td>
+                            <td>
+                              <div>
+                                <input type="text" id="Mano_obra_horas" value="5.3">
                               </div>
                             </td>
                             <td>
-                              <div
-                                class="ui-textinput ui-corner-all ui-shadow-inset ui-textinput-text ui-state-disabled ui-body-inherit mobile-textinput-disabled">
-                                <input class="iditar2 text-center" type="text" id="unidades_de_pintura">
-                              </div>
-                            </td>
-                            <td>
-                              <div
-                                class="ui-textinput ui-corner-all ui-shadow-inset ui-textinput-text ui-state-disabled ui-body-inherit mobile-textinput-disabled">
+                              <div>
                                 <input class="iditar2 text-center" type="text" id="horas_de_pintura"></div>
                             </td>
                             <td>
-                              <div
-                                class="ui-textinput ui-corner-all ui-shadow-inset ui-textinput-text ui-state-disabled ui-body-inherit mobile-textinput-disabled">
+                              <div>
                                 <input class="iditar2 text-center" type="text" id="valor_hora_pintura">
+                              </div>
+
+                            <td id="valor_total_pintura" class="text-center">$ 0 COP</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <input type="text" id="Mano_obra_horas" value="5.3">
+                            </td>
+                            <td>
+                              <div>
+                                <input type="text" id="Mano_obra_horas" value="5.3">
                               </div>
                             </td>
                             <td>
-                              <div
-                                class="ui-textinput ui-corner-all ui-shadow-inset ui-textinput-text ui-state-disabled ui-body-inherit mobile-textinput-disabled">
-                                <input class="iditar2 text-center" type="text" id="materiales_pintura">
-                              </div>
+                              <div>
+                                <input class="iditar2 text-center" type="text" id="horas_de_pintura"></div>
                             </td>
+                            <td>
+                              <div>
+                                <input class="iditar2 text-center" type="text" id="valor_hora_pintura">
+                              </div>
+
                             <td id="valor_total_pintura" class="text-center">$ 0 COP</td>
                           </tr>
                         </tbody>
@@ -469,16 +724,13 @@
             </div>
             <div class="col-md-12 contenedor-planes edit-plan">
               <div class="row">
-                <div class="col-md-12 planes">
+                <div class="col-md-12 planes especial">
                   <div class="titulo obra">
                     <h3>Valor Mano de obra</h3>
                   </div>
                   <div class="text-container">
-                    <p class="tiempo">Tiempo estimado </p>
-                    <p id="tiempo_total_d">5.30 horas</p>
-                    <p></p>
+                    <p class="tiempo">Tiempo estimado 10.5 días</p>
                     <p class="valor" id="valor_tiempo_d">$ 191.472 COP</p>
-                    <p class="iva">Valores sin IVA</p>
                   </div>
                 </div>
               </div>
@@ -489,25 +741,72 @@
               </div>
             </div>
           </div>
+          <div class="step-5" *ngIf="currDiv == 'step-5'">
+            <div class="breadcrumb">
+              <p>Inicio / <b>Valoración</b></p>
+            </div>
+            <div class="col-12">
+              <div class="contenedor">
+                <div class="row">
+                  <div class="col-12 col-md-6">
+                    <p class="titulo-notas"><span class="material-icons">
+                        comment
+                      </span> Notas</p>
+                    <div class="form-group">
+                      <textarea class="form-control" placeholder="Escribe tus notas"></textarea>
+
+                    </div>
+                    <p class="observacion">Máximo 500 caracteres</p>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <div class="negociacion">
+                      <p class="negociacion-titulo">
+                        Negociación Final
+                      </p>
+                      <p class="texto-negociacion">
+                        Ingresa el valor final de la negociación con
+                        el tercero en la colisión.
+                      </p>
+                      <input type="text">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col btn-container text-center">
+                <button mat-button class="btn btn-light" (click)="ShowDiv('step-4')">Atrás</button>
+                <button mat-button class="btn btn-warning" (click)="ShowDiv('step-6')" matStepperNext>Continuar</button>
+              </div>
+            </div>
+          </div>
         </mat-step>
 
       </mat-horizontal-stepper>
-    </div>
-  </div>
-</div>
-<footer>
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <div class="row">
-          <div class="contenedor-texto">
-            <p class="powered">Powered by</p>
+      <div class="step-6" *ngIf="currDiv == 'step-6'">
+        <div class="final">
+          <div class="icon-container">
+            <i class="material-icons exito">check</i>
           </div>
-          <div class="logo">
-            <p class="logo-text">SUBOCOL S.A</p>
+          <h3>Muy Bien!</h3>
+          <p>Realizaste con exito tu Valoración..</p>
+          <p>Vuelve al <span class="azul">Inicio</span> Inicio para realizar una
+            nueva Valoración o puedes <span class="azul">salir</span>
+            de la plataforma
+          </p>
+          <div class="row">
+            <div class="col btn-container text-center">
+              <button class="btn-start">INICIO</button>
+              <button class="btn-exit" (click)="ShowDiv('step-6')">SALIR</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
+</div>
+<footer>
+  <div class="col-12">
+    <p>Powered by <b>subocol</b></p>
   </div>
 </footer>

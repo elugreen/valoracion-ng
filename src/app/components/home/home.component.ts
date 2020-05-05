@@ -115,7 +115,7 @@ export class HomeComponent implements OnInit {
   color: ThemePalette;
   pcolor: string;
   mode: ProgressSpinnerMode = "determinate";
-  value = 49;
+  value = 61;
 
   /*  if(value.value < 30){
         this.color = 'primary';
@@ -151,17 +151,17 @@ export class HomeComponent implements OnInit {
    
     if(this.value <= 40){
         this.color = 'primary';
-        this.pcolor = '#4caf50';
+        this.pcolor = '#50e3c2';
     }
     else{
       if((this.value >= 41 ) && (this.value <= 60)) {
       this.color = 'accent';
-      this.pcolor = '#ffeb3b';
+      this.pcolor = '#fb9900';
     }
       else{
         if(this.value >= 41 ){
           this.color = 'warn';
-          this.pcolor = '#f44336';
+          this.pcolor = '#e24d56';
         }
       }
     }

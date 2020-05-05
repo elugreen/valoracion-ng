@@ -17,6 +17,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,9 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatAutocompleteModule,
     ReactiveFormsModule,
     MatProgressSpinnerModule,
-    MatTabsModule
+    MatTabsModule,
+    MatProgressBarModule
+    
 
   ],
   providers: [],
