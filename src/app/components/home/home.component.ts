@@ -549,6 +549,7 @@ export class HomeComponent implements OnInit {
       return 'invalidAutoshopcField' }
   }
   remove(index){
+    this.items.splice(index, 1);
     console.log('Delete image at index ', index);
   }
 

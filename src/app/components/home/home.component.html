@@ -84,7 +84,7 @@
                       <input type="siniestro" class="form-control" id="siniestro" placeholder="N° de siniestro *">
                     </div>
                     <div class="text-container-upload" (click)="hiddenfileinput.click()">
-                      <input style="display: none" type="file" (change)="onFileSelect($event)" #hiddenfileinput>
+                      <input style="display: none" type="file"  #hiddenfileinput>
                       <div class="row">
                         <div class="col-4">
                           <i class="material-icons backup  align-middle">backup</i>
@@ -122,7 +122,7 @@
 
                     </div>
                     <div class="text-container-upload" (click)="hiddenfileinput.click()">
-                      <input style="display: none" type="file" (change)="onFileSelect($event)" #hiddenfileinput>
+                      <input style="display: none" type="file"  #hiddenfileinput>
                       <div class="row">
                         <div class="col-4">
                           <i class="material-icons backup  align-middle">backup</i>
@@ -264,7 +264,7 @@
                           <div *ngFor="let add of adds" [class]="'picture '+ add.position">
                             <mat-icon class="add-picture" (click)="hiddenfileinput.click(); open_modal_time(picturemodal); changeClass($event)">add
                             </mat-icon>
-                            <input style="display: none" type="file" (change)="onFileSelect($event)" #hiddenfileinput>
+                            <input style="display: none" type="file" #hiddenfileinput>
                           </div>
                           <div *ngIf="!tooltip"  class="tool">
                             <p>Se produjo un error al cargar de tu fotografía. <br> Haz click en el botón y vuelve a intentarlo. </p>
@@ -380,7 +380,7 @@
                             <p>Número de foto: {{item.data.textProperty}}</p>
                             <div class="image-container">
                               <img [src]="item.data.thumb">
-                              <span class="material-icons"  (click)= "remove(i)">
+                              <span class="material-icons close-icon"  (click)= "remove(i)">
                                 close
                               </span>
                             </div>

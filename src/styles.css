@@ -891,7 +891,14 @@ a.ok_info {
   margin: 0px;
 }
 
-.gallery {}
+.gallery .close-icon {
+  top: 5px;
+  position: absolute;
+  right: 15px;
+  background-color:#fdebec;
+  color: #e24d57;
+  border-radius: 50%;
+}
 
 .gallery .image-container img {
   max-width: 100%;
