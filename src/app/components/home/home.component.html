@@ -15,10 +15,11 @@
       <img src="../assets/img/user1.png" alt="">
     </div>
   </div>
-  <i class="material-icons session-close" (click)="toggle()">keyboard_arrow_down</i>
-  <div class="button-session" *ngIf="show">
-    <p>Cerrar sesión</p>
-  </div>
+  <button mat-button [matMenuTriggerFor]="menu"><i class="material-icons session-close">keyboard_arrow_down</i></button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="ShowPdiv('settings')">Módulo parametrization</button>
+    <button mat-menu-item>Cerrar sesión</button>
+  </mat-menu>
 </header>
 <div class="main-content">
   <div class="container-fluid borderless">
@@ -37,7 +38,6 @@
                 </div>
               </div>
             </mat-radio-group>
-
             <h3 class="texto_info">Tipo de servicio</h3>
             <mat-radio-group aria-label="Select an option" formControlName="servicio">
               <div class="row justify-content-between">
@@ -60,9 +60,6 @@
                 </div>
               </div>
             </mat-radio-group>
-
-
-
           </form>
         </div>
       </div>
@@ -101,7 +98,6 @@
                       </div>
                     </div>
                     <div class="loading-container success dotted">
-
                       <div class="row">
                         <div class="col-3 col">
                           <span class="jpg">jpg</span>
@@ -140,10 +136,10 @@
                         </div>
                       </div>
                     </div>
-                    <div class="form-group group-upload">
+                    <div class="form-group group-upload succes-input">
                       <input type="vin" class="form-control" id="vin" placeholder="VIN *">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group error-input">
                       <input type="marca" class="form-control" id="placa" placeholder="Placa *">
                     </div>
                     <div class="form-group">
@@ -249,23 +245,6 @@
                   <button class="btn btn-warning" (click)="ShowDiv('step-2')" matStepperNext>CONTINUAR</button>
                 </div>
               </div>
-              <ng-template #content let-modal>
-                <div class="modal-header">
-                  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <div class="text-container-upload">
-                    <i class="material-icons backup">backup</i>
-                    <p>Carga la imagen de la tarjeta de propiedad del vehiculo</p>
-
-                  </div>
-                </div>
-                <div class="modal-footer">
-
-                </div>
-              </ng-template>
             </div>
           </div>
         </mat-step>
@@ -282,12 +261,13 @@
                       <div class="col-md-6 image-container">
                         <div class="top-div">
                           <img class="cenital-view" src="../assets/img/cenital.png" alt="">
-                          <div *ngFor="let add of adds" [class]="'picture '+ add.position"
-                            (click)="add.status=!add.status ; changeClass($event);">
-                            <mat-icon class="add-picture">
-                              {{ add.status?'camera_alt' : 'check'  }}
+                          <div *ngFor="let add of adds" [class]="'picture '+ add.position">
+                            <mat-icon class="add-picture" (click)="hiddenfileinput.click(); open_modal_time(picturemodal); changeClass($event)">add
                             </mat-icon>
                             <input style="display: none" type="file" (change)="onFileSelect($event)" #hiddenfileinput>
+                          </div>
+                          <div *ngIf="!tooltip"  class="tool">
+                            <p>Se produjo un error al cargar de tu fotografía. <br> Haz click en el botón y vuelve a intentarlo. </p>
                           </div>
                         </div>
                       </div>
@@ -305,8 +285,6 @@
                                   escoge los archivos que quieres subir</p>
                                 <p><span class="small-p">Archivos soportados JPG, JEPG y PNG <br>Máximo 5MB </span></p>
                               </div>
-
-
                             </div>
                           </div>
                         </div>
@@ -332,7 +310,6 @@
                               <mat-progress-bar mode="determinate" value="100"></mat-progress-bar>
                             </div>
                           </div>
-
                         </div>
                         <div class="loading-container warning">
                           <div class="row">
@@ -343,7 +320,7 @@
                               <p>Archivo 2</p>
                             </div>
                             <div class="col-2 col">
-                              
+
                             </div>
                             <div class="col-2 col">
                               <span class="material-icons">
@@ -356,7 +333,6 @@
                               <mat-progress-bar mode="determinate" value="71"></mat-progress-bar>
                             </div>
                           </div>
-
                         </div>
                         <div class="loading-container error">
                           <div class="row">
@@ -367,7 +343,6 @@
                               <p>Archivo 3</p>
                             </div>
                             <div class="col-2 col">
-                              
                             </div>
                             <div class="col-2 col">
                               <span class="material-icons">
@@ -380,13 +355,40 @@
                               <mat-progress-bar mode="determinate" value="10"></mat-progress-bar>
                             </div>
                           </div>
-
                         </div>
                       </div>
                     </div>
                   </mat-tab>
-
-                  <mat-tab label="GALERÍA"></mat-tab>
+                  <mat-tab label="GALERÍA">
+                    <div class="container">
+                      <div class="gallery-icons">
+                        <div class="icon-container">
+                          <span class="material-icons">
+                            edit
+                          </span>
+                        </div>
+                        <div class="icon-container">
+                          <span class="material-icons">
+                            delete
+                          </span>
+                        </div>
+                      </div>
+                      <div class="gallery">
+                        <div class="row">
+                          <div class="grid-item col-6 col-md-3" *ngFor="let item of items; let i = index"
+                            [lightbox]="i">
+                            <p>Número de foto: {{item.data.textProperty}}</p>
+                            <div class="image-container">
+                              <img [src]="item.data.thumb">
+                              <span class="material-icons"  (click)= "remove(i)">
+                                close
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </mat-tab>
                 </mat-tab-group>
               </div>
             </div>
@@ -396,6 +398,65 @@
                 <button mat-button class="btn btn-warning" (click)="ShowDiv('step-3')">Continuar</button>
               </div>
             </div>
+            <ng-template #picturemodal let-modal>
+              <div class="modal-header">
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body picturemodal">
+                <div class="row">
+                  <div class="col image-col">
+                    <div class="modal-image">
+                      <img src="../assets/img/images/frontal-izquierda.png" alt="">
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-12">
+                    <input type="text" placeholder="Nombre de la fotografía">
+                    <p>Selecciona la ubicación que corresponde la fotografía</p>
+                    <div class="group">
+                      <mat-checkbox>Frontal</mat-checkbox>
+                      <mat-checkbox>Frontal derecha 45º</mat-checkbox>
+                      <mat-checkbox>Frontal izquierda 45º</mat-checkbox>
+                      <mat-checkbox>Lateral derecha</mat-checkbox>
+                    </div>
+                    <div class="group">
+                      <mat-checkbox>Lateral izquierda</mat-checkbox>
+                      <mat-checkbox>Posterior</mat-checkbox>
+                      <mat-checkbox>Posterior derecha 45º</mat-checkbox>
+                      <mat-checkbox>Posterior izquierda 45º</mat-checkbox>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="loading-container success dotted">
+                      <div class="row">
+                        <div class="col-3 col">
+                          <span class="jpg">jpg</span>
+                        </div>
+                        <div class="col-5 col">
+                          <p>Archivo 1</p>
+                        </div>
+                        <div class="col-2 col">
+                          <p class="porcentaje">100%</p>
+                        </div>
+                        <div class="col-2 col">
+                          <span class="material-icons">
+                            close
+                          </span>
+                        </div>
+                      </div>
+                      <div class="row progress-bar-porcent">
+                        <div class="col-12">
+                          <mat-progress-bar mode="determinate" value="100"></mat-progress-bar>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
           </div>
           <div class="step-3" *ngIf="currDiv == 'step-3'">
             <div class="breadcrumb">
@@ -407,9 +468,9 @@
                 <mat-form-field class="example-full-width">
                   <mat-label>Agregar piezas</mat-label>
                   <input ype="text" placeholder="Agregar piezas" aria-label="Number" matInput [formControl]="myControl"
-                    [matAutocomplete]="auto" formControlName="filter" matInput (keyup)="applyFilter($event)">
+                    [matAutocomplete]="auto">
                   <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (click)="addRow($event)">
                       {{option.name}}
                     </mat-option>
                   </mat-autocomplete>
@@ -434,14 +495,15 @@
                     </td>
                   </ng-container>
 
-
+                  <ng-container matColumnDef="cantidad">
+                    <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+                    <td mat-cell *matCellDef="let element" class="input-td"> <input type="text"></td>
+                  </ng-container>
                   <!-- Position Column -->
                   <ng-container matColumnDef="name">
                     <th mat-header-cell *matHeaderCellDef> Nombre del repuesto </th>
                     <td mat-cell *matCellDef="let element"> {{element.name}} </td>
                   </ng-container>
-
-
                   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                 </table>
@@ -512,7 +574,7 @@
 
                         <p class="button-table">Guardar</p>
                       </button></div>
-                    <div class="col-4 buttons-table-container"> <button>
+                    <div class="col-4 buttons-table-container" (click)="removeSelectedRows()"> <button>
                         <span class="material-icons">
                           delete
                         </span>
@@ -528,49 +590,77 @@
 
                 </div>
               </div>
-              <div class="row">
-                <div class="table-responsive">
-                  <table id="table_rm" class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">Pieza</th>
-                        <th scope="col">Accion</th>
-                        <th scope="col">Referencia</th>
-                        <th scope="col">Valor unitario</th>
-                        <th scope="col">Probabilidad</th>
-                        <th scope="col">Precio Negociación</th>
-                        <th scope="col">Precio de lista</th>
-                        <th scope="col">Precio minimo</th>
-                        <th scope="col">Marca</th>
-                        <th scope="col">Línea</th>
-                        <th scope="col">Eliminar</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let pieza of Piezas">
-                        <td>{{pieza.pieza}}</td>
-                        <td>
-                          <select class="tableedit_d form-control editable" id="_acc">
-                            <option value="C">Cambio</option>
-                            <option value="R">Reparacion</option>
-                          </select>
-                        </td>
-                        <td>{{pieza.referencia}}</td>
-                        <td>{{pieza.unitario}}</td>
-                        <td>{{pieza.Probabilidad}}</td>
-                        <td>{{pieza.negociacion}}</td>
-                        <td>{{pieza.lista}}</td>
-                        <td>{{pieza.minimo}}</td>
-                        <td>{{pieza.marca}}</td>
-                        <td>{{pieza.linea}}</td>
-                        <td>
-                          <i id="_ex" class="material-icons eliminar">close</i>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+              <div class="mat-elevation-z8 example-container">
+                <table mat-table [dataSource]="dataSource1">
+
+
+                  <!-- Checkbox Column -->
+                  <ng-container matColumnDef="select">
+                    <th mat-header-cell *matHeaderCellDef>
+                      <mat-checkbox (change)="$event ? masterToggle1() : null"
+                        [checked]="selection1.hasValue() && isAllSelected1()"
+                        [indeterminate]="selection1.hasValue() && !isAllSelected1()" [aria-label]="checkboxLabel1()">
+                      </mat-checkbox>
+                    </th>
+                    <td mat-cell *matCellDef="let row">
+                      <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection1.toggle(row) : null"
+                        [checked]="selection1.isSelected(row)" [aria-label]="checkboxLabel1(row)">
+                      </mat-checkbox>
+                    </td>
+                  </ng-container>
+
+                  <!-- Unidad Column -->
+                  <ng-container matColumnDef="unidades">
+                    <th mat-header-cell *matHeaderCellDef>unidades</th>
+                    <td mat-cell *matCellDef="let element"><input type="text" name="" id=""></td>
+                  </ng-container>
+
+                  <!-- Nombre Column -->
+                  <ng-container matColumnDef="nombre">
+                    <th mat-header-cell *matHeaderCellDef>Nombre</th>
+                    <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+                  </ng-container>
+
+                  <!-- Referencia Column -->
+                  <ng-container matColumnDef="referencia">
+                    <th mat-header-cell *matHeaderCellDef>Referencia</th>
+                    <td mat-cell *matCellDef="let element"> {{element.referencia}} </td>
+                  </ng-container>
+                  <!-- estado -->
+                  <ng-container matColumnDef="estado">
+                    <th mat-header-cell *matHeaderCellDef>Estado</th>
+                    <td mat-cell *matCellDef="let element">
+                      <select class="tableedit_d form-control editable" id="_acc">
+                        <option value="C" selected>Cambio</option>
+                        <option value="R">Reparacion</option>
+                      </select></td>
+                  </ng-container>
+                  <!-- Precio Column -->
+                  <ng-container matColumnDef="precio">
+                    <th mat-header-cell *matHeaderCellDef>Predio</th>
+                    <td mat-cell *matCellDef="let element"> {{element.precio}} </td>
+                  </ng-container>
+                  <!-- Acciones Column -->
+                  <ng-container matColumnDef="acciones">
+                    <th mat-header-cell *matHeaderCellDef>Acciones</th>
+                    <td mat-cell *matCellDef="let element; let j = index;">
+                      <span class="material-icons">
+                        edit
+                      </span>
+                      <span class="material-icons" (click)="deleteTicket(j)">
+                        delete
+                      </span>
+                    </td>
+                  </ng-container>
+
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns1;"></tr>
+                </table>
+                <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
               </div>
+
+
             </div>
             <div class="col-md-12 contenedor-planes">
               <div class="row">
@@ -686,11 +776,11 @@
                             </td>
                             <td>
                               <div>
-                                <input class="iditar2 text-center" type="text" id="horas_de_pintura"></div>
+                                <input class="text-center" type="text" id="horas_de_pintura"></div>
                             </td>
                             <td>
                               <div>
-                                <input class="iditar2 text-center" type="text" id="valor_hora_pintura">
+                                <input class="text-center" type="text" id="valor_hora_pintura">
                               </div>
 
                             <td id="valor_total_pintura" class="text-center">$ 0 COP</td>
@@ -706,13 +796,12 @@
                             </td>
                             <td>
                               <div>
-                                <input class="iditar2 text-center" type="text" id="horas_de_pintura"></div>
+                                <input class="text-center" type="text" id="horas_de_pintura"></div>
                             </td>
                             <td>
                               <div>
-                                <input class="iditar2 text-center" type="text" id="valor_hora_pintura">
+                                <input class="text-center" type="text" id="valor_hora_pintura">
                               </div>
-
                             <td id="valor_total_pintura" class="text-center">$ 0 COP</td>
                           </tr>
                         </tbody>
@@ -747,30 +836,45 @@
             </div>
             <div class="col-12">
               <div class="contenedor">
-                <div class="row">
-                  <div class="col-12 col-md-6">
-                    <p class="titulo-notas"><span class="material-icons">
-                        comment
-                      </span> Notas</p>
-                    <div class="form-group">
-                      <textarea class="form-control" placeholder="Escribe tus notas"></textarea>
-
+                <div *ngIf="tercero" >
+                  <div class="row">  
+                    <div class="col-12 col-md-6 ">
+                      <p class="titulo-notas"><span class="material-icons">
+                          comment
+                        </span> Notas</p>
+                      <div class="form-group">
+                        <textarea class="form-control" placeholder="Escribe tus notas"></textarea>
+                      </div>
+                      <p class="observacion">Máximo 500 caracteres</p>
                     </div>
-                    <p class="observacion">Máximo 500 caracteres</p>
-                  </div>
-                  <div class="col-12 col-md-6">
-                    <div class="negociacion">
-                      <p class="negociacion-titulo">
-                        Negociación Final
-                      </p>
-                      <p class="texto-negociacion">
-                        Ingresa el valor final de la negociación con
-                        el tercero en la colisión.
-                      </p>
-                      <input type="text">
+                    <div class="col-12 col-md-6">
+                      <div class="negociacion">
+                        <p class="negociacion-titulo">
+                          Negociación Final
+                        </p>
+                        <p class="texto-negociacion">
+                          Ingresa el valor final de la negociación con
+                          el tercero en la colisión.
+                        </p>
+                        <input type="text" class="form-control" >
+                      </div>
                     </div>
                   </div>
                 </div>
+                <div *ngIf="!tercero" >
+                  <div class="row">  
+                    <div class="col-12 col-md-8 row-notas">
+                      <p class="titulo-notas"><span class="material-icons">
+                          comment
+                        </span> Notas</p>
+                      <div class="form-group">
+                        <textarea class="form-control" placeholder="Escribe tus notas"></textarea>
+                      </div>
+                      <p class="observacion">Máximo 500 caracteres</p>
+                    </div>
+                  </div>
+                </div>
+               
               </div>
             </div>
             <div class="row">
@@ -781,10 +885,10 @@
             </div>
           </div>
         </mat-step>
-
       </mat-horizontal-stepper>
       <div class="step-6" *ngIf="currDiv == 'step-6'">
         <div class="final">
+        <div *ngIf="finalsuccess" class="final-success">
           <div class="icon-container">
             <i class="material-icons exito">check</i>
           </div>
@@ -801,6 +905,257 @@
             </div>
           </div>
         </div>
+        <div *ngIf="!finalsuccess" class="final-error">
+          <div class="icon-container">
+            <i class="material-icons exito">warning</i>
+          </div>
+          <h3>Upps!</h3>
+          <p>Ocurrio un error y no hemos podido procesar tu valoración</p>
+          <p>Por favor <span class="azul">vuelve a intentarlo</span> o comunicate con el area
+            de <span class="azul">soporte</span>
+          </p>
+          <div class="row">
+            <div class="col btn-container text-center">
+              <button class="btn-exit" (click)="ShowDiv('step-1')">Vuelve a intentarlo</button>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="settings" *ngIf="currPdiv == 'settings'">
+      <div class="row main-row">
+        <div class="col-4 search">
+          <div class="contenedor">
+
+            <form [formGroup]="searchFormGroup" (ngSubmit)='submission()'>
+
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Buscar" formControlName="buscar">
+              </div>
+              <div class="form-group">
+                <ng-multiselect-dropdown name="region" [placeholder]="'Región *'" [data]="region"
+                  formControlName="region"  [(ngModel)]="selectedRegions" [settings]="dropdownSettings"
+                  (onSelect)="onItemSelect($event)" [required]='requiredRegion' >
+                </ng-multiselect-dropdown>
+                <div *ngIf="!requiredRegion" >
+                  <div class="invalid-feedback">La región es un campo obligatorio</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <ng-multiselect-dropdown name="ciudad" [placeholder]="'Ciudad *'" [data]="ciudad"
+                  formControlName="ciudad" [(ngModel)]="selectedCities" [settings]="dropdownSettings"
+                  (onSelect)="onItemSelect($event)" [required]='requiredCity'>
+                </ng-multiselect-dropdown>
+                <div *ngIf="!requiredCity" >
+                  <div class="invalid-feedback">La ciudad es un campo obligatorio</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <ng-multiselect-dropdown name="taller" [placeholder]="'Taller *'" [data]="taller"
+                  formControlName="taller" [(ngModel)]="selectedAutoshop" [settings]="dropdownSettings"
+                  (onSelect)="onItemSelect($event)"  [required]='requiredAutoshop'>
+                </ng-multiselect-dropdown>
+                <div *ngIf="!requiredAutoshop" >
+                  <div class="invalid-feedback">El taller es un campo obligatorio</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <ng-multiselect-dropdown name="tipotaller" [placeholder]="'Tipo Taller*'" [data]="tipotaller"
+                  formControlName="tipotaller" [(ngModel)]="selectedAutoshoptype" [settings]="dropdownSettings"
+                  (onSelect)="onItemSelect($event)" [required]='requiredAutoshoptype'>
+                </ng-multiselect-dropdown>
+                <div *ngIf="!requiredAutoshoptype" >
+                  <div class="invalid-feedback">El tipo de taller es un campo obligatorio</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <ng-multiselect-dropdown name="calidadtaller" [placeholder]="'Calidad Taller*'" [data]="calidadtaller"
+                  formControlName="calidadtaller" [(ngModel)]="selectedAutoshopc" [settings]="dropdownSettings"
+                  (onSelect)="onItemSelect($event)" [required]='requiredAutoshopc'>
+                </ng-multiselect-dropdown>
+                <div *ngIf="!requiredAutoshopc" >
+                  <div class="invalid-feedback">La calidad del taller es un campo obligatorio</div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col btn-container text-center">
+                  <button mat-button class="btn btn-light">Limpiar</button>
+                  <button mat-button class="btn btn-warning" type="submit">APlicar</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-8 parameters">
+          <div class="contenedor">
+            <h3>Caracteristicas generales del taller</h3>
+            <hr>
+            <form [formGroup]="settingFormGroup">
+              <div class="row">
+                <div class="col-4">
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="N° de casos">
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="form-group">
+                    <div id="marca" class="">
+                      <div class="form-group">
+                        <ng-multiselect-dropdown name="marca" [placeholder]="'Marca'" [data]="marca"
+                          formControlName="marca" [settings]="dropdownSettings"
+                          (onSelect)="onItemSelect($event)">
+                        </ng-multiselect-dropdown>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <p class="col-title">Estado</p>
+                  <div class="switch-button">
+                    <label class="switch">
+                      <input type="checkbox" id="togBtn">
+                      <div class="slider round">
+                        <!--ADDED HTML -->
+                        <span class="on">Activo</span>
+                        <span class="off">Inactivo</span>
+                        <!--END-->
+                      </div>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-4">
+                  <div class="form-group">
+                    <p class="col-title">Tipo de Amparo</p>
+                    <div class="row">
+                      <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <div class="col-6 nopadding">
+                          <label class="btn btn-outline-secondary active">
+                            <input type="radio" name="options" id="option1" checked>RC
+                          </label>
+                          <label class="btn btn-outline-secondary">
+                            <input type="radio" name="options" id="option2">PPT
+                          </label>
+                        </div>
+                        <div class="col-6 nopadding">
+                          <label class="btn btn-outline-secondary">
+                            <input type="radio" name="options" id="option3">PPD
+                          </label>
+                          <label class="btn btn-outline-secondary">
+                            <input type="radio" name="options" id="option4">EXPRESS
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="form-group">
+                    <p class="col-title">Incendios</p>
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                      <label class="btn btn-outline-secondary small active">
+                        <input type="radio" name="options" id="option1" checked>Si
+                      </label>
+                      <label class="btn btn-outline-secondary small">
+                        <input type="radio" name="options" id="option2">No
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="form-group">
+                    <p class="col-title">Inundados</p>
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                      <label class="btn btn-outline-secondary small active">
+                        <input type="radio" name="options" id="option1" checked>Si
+                      </label>
+                      <label class="btn btn-outline-secondary small">
+                        <input type="radio" name="options" id="option2">No
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-4">
+                  <div class="form-group">
+                    <mat-label>Mano de Obra Latonería</mat-label>
+                    <input matInput placeholder="$ Valor Latonería*" class="form-control">
+                  </div>
+
+                </div>
+                <div class="col-4">
+                  <div class="form-group">
+                    <mat-label>Mano de Obra Mecánica</mat-label>
+                    <input matInput placeholder="$ Valor Mecánica*" class="form-control">
+                  </div>
+
+                </div>
+                <div class="col-4">
+                  <div class="form-group">
+                    <mat-label>Mano de Obra Pintura</mat-label>
+                    <input matInput placeholder="$ Valor Pintura*" class="form-control">
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <h3>Pintura</h3>
+              <hr>
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group">
+                    <p class="col-title">Calidad de pintura</p>
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                      <label class="btn btn-outline-secondary active">
+                        <input type="radio" name="options" id="option1" checked>Agua
+                      </label>
+                      <label class="btn btn-outline-secondary">
+                        <input type="radio" name="options" id="option2">Solvente
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-group">
+                    <mat-label>Valor Constante de Pintura</mat-label>
+                    <input matInput placeholder="$ Valor constante pintura *" class="form-control">
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group">
+                    <mat-label>Valor M2 Pintura Monocapa</mat-label>
+                    <input matInput placeholder="$ Valor M2 Monocapa *" class="form-control">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-group">
+                    <mat-label>Valor M2 Pintura Bicapa</mat-label>
+                    <input matInput placeholder="$ Valor M2 Bicapa *" class="form-control">
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group">
+                    <mat-label>Valor M2 Pintura Tricapa</mat-label>
+                    <input matInput placeholder="$ Valor M2 Tricapa *" class="form-control">
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col btn-container text-right">
+                  <button mat-button class="btn btn-light">Limpiar</button>
+                  <button mat-button class="btn btn-warning">APlicar</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -810,3 +1165,19 @@
     <p>Powered by <b>subocol</b></p>
   </div>
 </footer>
+<div class="loader" *ngIf="currPdiv == 'loader'">
+  <div class="loader-container">
+    <div class="bar-container">
+      <h6 class="loader-title">Cargando</h6>
+      <p class="loader-porcent">50%</p>
+      <div class="next-container">
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__ball"></div>
+      </div>
+    </div>
+  </div>
+</div>
