@@ -84,7 +84,7 @@
                       <input type="siniestro" class="form-control" id="siniestro" placeholder="N° de siniestro *">
                     </div>
                     <div class="text-container-upload" (click)="hiddenfileinput.click()">
-                      <input style="display: none" type="file"  #hiddenfileinput>
+                      <input style="display: none" type="file" #hiddenfileinput>
                       <div class="row">
                         <div class="col-4">
                           <i class="material-icons backup  align-middle">backup</i>
@@ -122,7 +122,7 @@
 
                     </div>
                     <div class="text-container-upload" (click)="hiddenfileinput.click()">
-                      <input style="display: none" type="file"  #hiddenfileinput>
+                      <input style="display: none" type="file" #hiddenfileinput>
                       <div class="row">
                         <div class="col-4">
                           <i class="material-icons backup  align-middle">backup</i>
@@ -262,19 +262,21 @@
                         <div class="top-div">
                           <img class="cenital-view" src="../assets/img/cenital.png" alt="">
                           <div *ngFor="let add of adds" [class]="'picture '+ add.position">
-                            <mat-icon class="add-picture" (click)="hiddenfileinput.click(); open_modal_time(picturemodal); changeClass($event)">add
+                            <mat-icon class="add-picture"
+                              (click)="hiddenfileinput.click(); open_modal_time(picturemodal); changeClass($event)">add
                             </mat-icon>
                             <input style="display: none" type="file" #hiddenfileinput>
                           </div>
-                          <div *ngIf="!tooltip"  class="tool">
-                            <p>Se produjo un error al cargar de tu fotografía. <br> Haz click en el botón y vuelve a intentarlo. </p>
+                          <div *ngIf="!tooltip" class="tool">
+                            <p>Se produjo un error al cargar de tu fotografía. <br> Haz click en el botón y vuelve a
+                              intentarlo. </p>
                           </div>
                         </div>
                       </div>
                       <div class="col-md-6 upload">
                         <p class="archivos">Sube todos tus archivos</p>
                         <div class="text-container-upload">
-                          <input style="display: none" type="file"  #hiddenfileinput>
+                          <input style="display: none" type="file" #hiddenfileinput>
                           <div class="row">
                             <div class="col-4 col-md-12">
                               <i class="material-icons backup  align-middle">backup</i>
@@ -380,9 +382,11 @@
                             <p>Número de foto: {{item.data.textProperty}}</p>
                             <div class="image-container">
                               <img [src]="item.data.thumb">
-                              <span class="material-icons close-icon"  (click)= "remove(i)">
+
+                              <span class="material-icons close-icon" (click)="remove(i)">
                                 close
                               </span>
+
                             </div>
                           </div>
                         </div>
@@ -470,7 +474,8 @@
                   <input ype="text" placeholder="Agregar piezas" aria-label="Number" matInput [formControl]="myControl"
                     [matAutocomplete]="auto">
                   <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (click)="addRow($event)">
+                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option"
+                      (click)="addRow($event)">
                       {{option.name}}
                     </mat-option>
                   </mat-autocomplete>
@@ -836,8 +841,8 @@
             </div>
             <div class="col-12">
               <div class="contenedor">
-                <div *ngIf="tercero" >
-                  <div class="row">  
+                <div *ngIf="tercero">
+                  <div class="row">
                     <div class="col-12 col-md-6 ">
                       <p class="titulo-notas"><span class="material-icons">
                           comment
@@ -856,13 +861,13 @@
                           Ingresa el valor final de la negociación con
                           el tercero en la colisión.
                         </p>
-                        <input type="text" class="form-control" >
+                        <input type="text" class="form-control">
                       </div>
                     </div>
                   </div>
                 </div>
-                <div *ngIf="!tercero" >
-                  <div class="row">  
+                <div *ngIf="!tercero">
+                  <div class="row">
                     <div class="col-12 col-md-8 row-notas">
                       <p class="titulo-notas"><span class="material-icons">
                           comment
@@ -874,7 +879,7 @@
                     </div>
                   </div>
                 </div>
-               
+
               </div>
             </div>
             <div class="row">
@@ -888,38 +893,38 @@
       </mat-horizontal-stepper>
       <div class="step-6" *ngIf="currDiv == 'step-6'">
         <div class="final">
-        <div *ngIf="finalsuccess" class="final-success">
-          <div class="icon-container">
-            <i class="material-icons exito">check</i>
-          </div>
-          <h3>Muy Bien!</h3>
-          <p>Realizaste con exito tu Valoración..</p>
-          <p>Vuelve al <span class="azul">Inicio</span> Inicio para realizar una
-            nueva Valoración o puedes <span class="azul">salir</span>
-            de la plataforma
-          </p>
-          <div class="row">
-            <div class="col btn-container text-center">
-              <button class="btn-start">INICIO</button>
-              <button class="btn-exit" (click)="ShowDiv('step-6')">SALIR</button>
+          <div *ngIf="finalsuccess" class="final-success">
+            <div class="icon-container">
+              <i class="material-icons exito">check</i>
+            </div>
+            <h3>Muy Bien!</h3>
+            <p>Realizaste con exito tu Valoración..</p>
+            <p>Vuelve al <span class="azul">Inicio</span> Inicio para realizar una
+              nueva Valoración o puedes <span class="azul">salir</span>
+              de la plataforma
+            </p>
+            <div class="row">
+              <div class="col btn-container text-center">
+                <button class="btn-start">INICIO</button>
+                <button class="btn-exit" (click)="ShowDiv('step-6')">SALIR</button>
+              </div>
             </div>
           </div>
-        </div>
-        <div *ngIf="!finalsuccess" class="final-error">
-          <div class="icon-container">
-            <i class="material-icons exito">warning</i>
-          </div>
-          <h3>Upps!</h3>
-          <p>Ocurrio un error y no hemos podido procesar tu valoración</p>
-          <p>Por favor <span class="azul">vuelve a intentarlo</span> o comunicate con el area
-            de <span class="azul">soporte</span>
-          </p>
-          <div class="row">
-            <div class="col btn-container text-center">
-              <button class="btn-exit" (click)="ShowDiv('step-1')">Vuelve a intentarlo</button>
+          <div *ngIf="!finalsuccess" class="final-error">
+            <div class="icon-container">
+              <i class="material-icons exito">warning</i>
+            </div>
+            <h3>Upps!</h3>
+            <p>Ocurrio un error y no hemos podido procesar tu valoración</p>
+            <p>Por favor <span class="azul">vuelve a intentarlo</span> o comunicate con el area
+              de <span class="azul">soporte</span>
+            </p>
+            <div class="row">
+              <div class="col btn-container text-center">
+                <button class="btn-exit" (click)="ShowDiv('step-1')">Vuelve a intentarlo</button>
+              </div>
             </div>
           </div>
-        </div>
         </div>
       </div>
     </div>
@@ -935,10 +940,10 @@
               </div>
               <div class="form-group">
                 <ng-multiselect-dropdown name="region" [placeholder]="'Región *'" [data]="region"
-                  formControlName="region"  [(ngModel)]="selectedRegions" [settings]="dropdownSettings"
-                  (onSelect)="onItemSelect($event)" [required]='requiredRegion' >
+                  formControlName="region" [(ngModel)]="selectedRegions" [settings]="dropdownSettings"
+                  (onSelect)="onItemSelect($event)" [required]='requiredRegion'>
                 </ng-multiselect-dropdown>
-                <div *ngIf="!requiredRegion" >
+                <div *ngIf="!requiredRegion">
                   <div class="invalid-feedback">La región es un campo obligatorio</div>
                 </div>
               </div>
@@ -947,16 +952,16 @@
                   formControlName="ciudad" [(ngModel)]="selectedCities" [settings]="dropdownSettings"
                   (onSelect)="onItemSelect($event)" [required]='requiredCity'>
                 </ng-multiselect-dropdown>
-                <div *ngIf="!requiredCity" >
+                <div *ngIf="!requiredCity">
                   <div class="invalid-feedback">La ciudad es un campo obligatorio</div>
                 </div>
               </div>
               <div class="form-group">
                 <ng-multiselect-dropdown name="taller" [placeholder]="'Taller *'" [data]="taller"
                   formControlName="taller" [(ngModel)]="selectedAutoshop" [settings]="dropdownSettings"
-                  (onSelect)="onItemSelect($event)"  [required]='requiredAutoshop'>
+                  (onSelect)="onItemSelect($event)" [required]='requiredAutoshop'>
                 </ng-multiselect-dropdown>
-                <div *ngIf="!requiredAutoshop" >
+                <div *ngIf="!requiredAutoshop">
                   <div class="invalid-feedback">El taller es un campo obligatorio</div>
                 </div>
               </div>
@@ -965,7 +970,7 @@
                   formControlName="tipotaller" [(ngModel)]="selectedAutoshoptype" [settings]="dropdownSettings"
                   (onSelect)="onItemSelect($event)" [required]='requiredAutoshoptype'>
                 </ng-multiselect-dropdown>
-                <div *ngIf="!requiredAutoshoptype" >
+                <div *ngIf="!requiredAutoshoptype">
                   <div class="invalid-feedback">El tipo de taller es un campo obligatorio</div>
                 </div>
               </div>
@@ -974,7 +979,7 @@
                   formControlName="calidadtaller" [(ngModel)]="selectedAutoshopc" [settings]="dropdownSettings"
                   (onSelect)="onItemSelect($event)" [required]='requiredAutoshopc'>
                 </ng-multiselect-dropdown>
-                <div *ngIf="!requiredAutoshopc" >
+                <div *ngIf="!requiredAutoshopc">
                   <div class="invalid-feedback">La calidad del taller es un campo obligatorio</div>
                 </div>
               </div>
@@ -1003,8 +1008,7 @@
                     <div id="marca" class="">
                       <div class="form-group">
                         <ng-multiselect-dropdown name="marca" [placeholder]="'Marca'" [data]="marca"
-                          formControlName="marca" [settings]="dropdownSettings"
-                          (onSelect)="onItemSelect($event)">
+                          formControlName="marca" [settings]="dropdownSettings" (onSelect)="onItemSelect($event)">
                         </ng-multiselect-dropdown>
                       </div>
                     </div>
