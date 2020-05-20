@@ -70,7 +70,7 @@
       </div>
     </div>
     <div class="steps" *ngIf="currPdiv == 'steps'">
-      <mat-horizontal-stepper>
+      <mat-horizontal-stepper [linear]="isLinear" #stepper>
         <mat-step>
           <div>
             <div class="step-1" *ngIf="currDiv == 'step-1'">
@@ -889,47 +889,48 @@
               </div>
             </div>
           </div>
-        </mat-step>
-      </mat-horizontal-stepper>
-      <div class="step-6" *ngIf="currDiv == 'step-6'">
-        <div class="final">
-          <div *ngIf="finalsuccess" class="final-success">
-            <div class="icon-container">
-              <i class="material-icons exito">check</i>
-            </div>
-            <h3>Muy Bien!</h3>
-            <p>Realizaste con exito tu Valoración..</p>
-            <p>Vuelve al <span class="azul">Inicio</span> Inicio para realizar una
-              nueva Valoración o puedes <span class="azul">salir</span>
-              de la plataforma
-            </p>
-            <div class="row">
-              <div class="col btn-container text-center">
-                <button class="btn-start">INICIO</button>
-                <button class="btn-exit" (click)="ShowDiv('step-6')">SALIR</button>
+          <div class="step-6" *ngIf="currDiv == 'step-6'">
+            <div class="final">
+              <div *ngIf="finalsuccess" class="final-success">
+                <div class="icon-container">
+                  <i class="material-icons exito">check</i>
+                </div>
+                <h3>Muy Bien!</h3>
+                <p>Realizaste con exito tu Valoración..</p>
+                <p>Vuelve al <span class="azul">Inicio</span> Inicio para realizar una
+                  nueva Valoración o puedes <span class="azul">salir</span>
+                  de la plataforma
+                </p>
+                <div class="row">
+                  <div class="col btn-container text-center">
+                    <button class="btn-start" (click)="restart()">INICIO</button>
+                    <button class="btn-exit" (click)="salir()">SALIR</button>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="!finalsuccess" class="final-error">
+                <div class="icon-container">
+                  <i class="material-icons exito">warning</i>
+                </div>
+                <h3>Upps!</h3>
+                <p>Ocurrio un error y no hemos podido procesar tu valoración</p>
+                <p>Por favor <span class="azul">vuelve a intentarlo</span> o comunicate con el area
+                  de <span class="azul">soporte</span>
+                </p>
+                <div class="row">
+                  <div class="col btn-container text-center">
+                    <button class="btn-exit" (click)="restart()">Vuelve a intentarlo</button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <div *ngIf="!finalsuccess" class="final-error">
-            <div class="icon-container">
-              <i class="material-icons exito">warning</i>
-            </div>
-            <h3>Upps!</h3>
-            <p>Ocurrio un error y no hemos podido procesar tu valoración</p>
-            <p>Por favor <span class="azul">vuelve a intentarlo</span> o comunicate con el area
-              de <span class="azul">soporte</span>
-            </p>
-            <div class="row">
-              <div class="col btn-container text-center">
-                <button class="btn-exit" (click)="ShowDiv('step-1')">Vuelve a intentarlo</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+        </mat-step> 
+      
+    </mat-horizontal-stepper>
     </div>
     <div class="settings" *ngIf="currPdiv == 'settings'">
-      <div class="row main-row">
+      <div class="row main-row" *ngIf="currSdiv == 'settings-step1'" >
         <div class="col-4 search">
           <div class="contenedor">
 
@@ -986,7 +987,7 @@
               <div class="row">
                 <div class="col btn-container text-center">
                   <button mat-button class="btn btn-light">Limpiar</button>
-                  <button mat-button class="btn btn-warning" type="submit">APlicar</button>
+                  <button mat-button class="btn btn-warning" type="submit" >Aplicar</button>
                 </div>
               </div>
             </form>
@@ -1154,11 +1155,34 @@
               <div class="row">
                 <div class="col btn-container text-right">
                   <button mat-button class="btn btn-light">Limpiar</button>
-                  <button mat-button class="btn btn-warning">APlicar</button>
+                  <button mat-button class="btn btn-warning" (click)="ShowSdiv('settings-step2')">APlicar</button>
                 </div>
               </div>
             </form>
           </div>
+        </div>
+      </div>
+      <div class="row main-row" *ngIf="currSdiv == 'settings-step2'">
+        <div class="final">
+          <div *ngIf="finalsuccess" class="final-success">
+            <div class="icon-container">
+              <i class="material-icons exito">check</i>
+            </div>
+            <h3>Muy Bien!</h3>
+            <p>Realizaste con exito la parametrización del taller .......</p>
+            <p>Vuelve al <span class="azul">Inicio</span> Inicio para realizar una
+              nueva parametrización, tambien puedes <span class="azul">ir a la valoración</span> en la plataforma o puedes <span class="azul">salir</span>
+             
+            </p>
+            <div class="row">
+              <div class="col btn-container text-center">
+                <button class="btn-start">INICIO</button>
+                <button class="btn-start" (click)="ShowPdiv('steps'); ShowDiv('step-1') ">VALORACIÓN</button>
+                <button class="btn-exit" (click)="salir()">SALIR</button>
+              </div>
+            </div>
+          </div>
+         
         </div>
       </div>
     </div>

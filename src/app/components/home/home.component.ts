@@ -102,7 +102,7 @@ export class HomeComponent implements OnInit {
   myControl = new FormControl();
   currDiv: string = "step-1";
   currPdiv: string = "select";
-
+  currSdiv: string = "settings-step1";
 
   charge: boolean = false;
   tooltip: boolean = true;
@@ -378,6 +378,9 @@ export class HomeComponent implements OnInit {
   ShowPdiv(divVal: string) {
     this.currPdiv = divVal;
   }
+  ShowSdiv(divVal: string) {
+    this.currSdiv = divVal;
+  }
   toggle() {
     this.show = !this.show;
   }
@@ -570,6 +573,12 @@ export class HomeComponent implements OnInit {
     else{
       alert ('formulario invalido');
     }
+  }
+  salir(){
+    this.router.navigate(["/login"]);
+  }
+  restart(){
+    window.location.reload();
   }
   
 }
