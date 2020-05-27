@@ -23,11 +23,13 @@ import { FormsModule } from '@angular/forms';
 import { GalleryModule } from '@ngx-gallery/core';
 import { LightboxModule } from '@ngx-gallery/lightbox';
 import { NgxGalleryModule } from 'ngx-gallery';
-import { MatPaginatorModule } from '@angular/material';
+import { MatPaginatorModule, MatPaginatorIntl} from '@angular/material';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatMenuModule} from '@angular/material/menu';
 import { GALLERY_CONFIG } from '@ngx-gallery/core';
+import { HttpClientModule } from "@angular/common/http";
+import { MatPaginatorIntlEsp } from './components/customPaginator';
 
 
 /* Custom Hammer configuration */
@@ -76,6 +78,7 @@ export class CustomHammerConfig extends HammerGestureConfig {
     MatPaginatorModule,
     MatSlideToggleModule,
     MatMenuModule,
+    HttpClientModule,
     NgMultiSelectDropDownModule.forRoot()
 
   ],
@@ -89,7 +92,8 @@ export class CustomHammerConfig extends HammerGestureConfig {
         nav: false,
       }
     },
-    {provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig}
+    {provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig},
+    {provide: MatPaginatorIntl, useClass: MatPaginatorIntlEsp}
   ],
   bootstrap: [AppComponent]
 })

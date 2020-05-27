@@ -188,7 +188,7 @@
                         <div class="col-4 tipo_vehiculo">
                           <div class="container-col seleccionable active" id="hatchback">
                             <div class="content">
-                              <img src="../assets/img/hatchback.png" alt="">
+                              <mat-icon svgIcon="arriba"></mat-icon>
                               <p>Hatchback</p>
                             </div>
                           </div>
@@ -502,7 +502,7 @@
 
                   <ng-container matColumnDef="cantidad">
                     <th mat-header-cell *matHeaderCellDef> Cantidad </th>
-                    <td mat-cell *matCellDef="let element" class="input-td"> <input type="text"></td>
+                    <td mat-cell *matCellDef="let element" class="input-td input-cantidad" > <input type="text"></td>
                   </ng-container>
                   <!-- Position Column -->
                   <ng-container matColumnDef="name">
@@ -732,19 +732,19 @@
 
                             <td class="text-center" scope="col" id="Mano_obra_descripcion">Mano de Obra Lamina</td>
                             <td scope="col">
-                              <input type="text" id="Mano_obra_horas" value="5.3">
+                              <input type="text" id="Mano_obra_horas" value="5.3"class="form-control"> 
                             </td>
                             <td scope="col">
-                              <input type="text" value="36000">
+                              <input type="text" value="36000" class="form-control">
                             </td>
                           </tr>
                           <tr>
                             <td class="text-center" scope="col">Mano de Obra Mecanica</td>
                             <td scope="col">
-                              <input type="text" id="Mano_obra_horas" value="5.3">
+                              <input type="text" id="Mano_obra_horas" value="5.3" class="form-control">
                             </td>
                             <td scope="col">
-                              <input type="text" value="36000">
+                              <input type="text" value="36000" class="form-control">
                             </td>
                           </tr>
 
@@ -772,11 +772,11 @@
                         <tbody>
                           <tr>
                             <td>
-                              <input type="text" id="Mano_obra_horas" value="5.3">
+                              <input type="text" id="Mano_obra_horas" value="5.3" class="form-control">
                             </td>
                             <td>
                               <div>
-                                <input type="text" id="Mano_obra_horas" value="5.3">
+                                <input type="text" id="Mano_obra_horas" value="5.3" class="form-control">
                               </div>
                             </td>
                             <td>
@@ -792,11 +792,11 @@
                           </tr>
                           <tr>
                             <td>
-                              <input type="text" id="Mano_obra_horas" value="5.3">
+                              <input type="text" id="Mano_obra_horas" value="5.3" class="form-control">
                             </td>
                             <td>
                               <div>
-                                <input type="text" id="Mano_obra_horas" value="5.3">
+                                <input type="text" id="Mano_obra_horas" value="5.3" class="form-control">
                               </div>
                             </td>
                             <td>
@@ -831,7 +831,7 @@
             </div>
             <div class="row">
               <div class="col btn-container text-center">
-                <button mat-button class="btn btn-warning" (click)="ShowDiv('step-4')">Continuar</button>
+                <button mat-button class="btn btn-warning" (click)="ShowDiv('step-4')">Guardar</button>
               </div>
             </div>
           </div>
@@ -885,7 +885,7 @@
             <div class="row">
               <div class="col btn-container text-center">
                 <button mat-button class="btn btn-light" (click)="ShowDiv('step-4')">Atrás</button>
-                <button mat-button class="btn btn-warning" (click)="ShowDiv('step-6')" matStepperNext>Continuar</button>
+                <button mat-button class="btn btn-warning" (click)="ShowDiv('step-6')" matStepperNext>Guardar</button>
               </div>
             </div>
           </div>
@@ -967,19 +967,47 @@
                 </div>
               </div>
               <div class="form-group">
-                <ng-multiselect-dropdown name="tipotaller" [placeholder]="'Tipo Taller*'" [data]="tipotaller"
-                  formControlName="tipotaller" [(ngModel)]="selectedAutoshoptype" [settings]="dropdownSettings"
-                  (onSelect)="onItemSelect($event)" [required]='requiredAutoshoptype'>
-                </ng-multiselect-dropdown>
+                <p class="button-label">Tipo de taller</p>
+                <mat-radio-group aria-label="Select an option" formControlName="tipotaller" [(ngModel)]="selectedAutoshoptype"  [required]='requiredAutoshoptype'>
+                  <div class="row justify-content-between">
+                    <div class="col-12">
+                      <mat-radio-button value="concesionario" class="btn-checkbox">Concesionario</mat-radio-button>
+                    </div>
+                    <div class="col-12">
+                      <mat-radio-button value="multimarca" class="btn-checkbox">Multimarca</mat-radio-button>
+                    </div>
+                    <div class="col-12">
+                      <mat-radio-button value="mixto" class="btn-checkbox">Mixto</mat-radio-button>
+                    </div>
+                  </div>
+                </mat-radio-group>
                 <div *ngIf="!requiredAutoshoptype">
                   <div class="invalid-feedback">El tipo de taller es un campo obligatorio</div>
                 </div>
               </div>
+              
               <div class="form-group">
+
+                <p class="button-label">Calidad del taller</p>
+                <mat-radio-group aria-label="Select an option" formControlName="calidadtaller" [(ngModel)]="selectedAutoshopc"  [required]='requiredAutoshopc'>
+                  <div class="row justify-content-between">
+                    <div class="col-12">
+                      <mat-radio-button value="superdiamente" class="btn-checkbox">Super Diamente</mat-radio-button>
+                    </div>
+                    <div class="col-12">
+                      <mat-radio-button value="diamante" class="btn-checkbox">Diamante</mat-radio-button>
+                    </div>
+                    <div class="col-12">
+                      <mat-radio-button value="platino" class="btn-checkbox">Platino</mat-radio-button>
+                    </div>
+                  </div>
+                </mat-radio-group>
+                
+                <!-- 
                 <ng-multiselect-dropdown name="calidadtaller" [placeholder]="'Calidad Taller*'" [data]="calidadtaller"
                   formControlName="calidadtaller" [(ngModel)]="selectedAutoshopc" [settings]="dropdownSettings"
                   (onSelect)="onItemSelect($event)" [required]='requiredAutoshopc'>
-                </ng-multiselect-dropdown>
+                </ng-multiselect-dropdown> -->
                 <div *ngIf="!requiredAutoshopc">
                   <div class="invalid-feedback">La calidad del taller es un campo obligatorio</div>
                 </div>
@@ -1154,8 +1182,8 @@
               </div>
               <div class="row">
                 <div class="col btn-container text-right">
-                  <button mat-button class="btn btn-light">Limpiar</button>
-                  <button mat-button class="btn btn-warning" (click)="ShowSdiv('settings-step2')">APlicar</button>
+                  <button mat-button class="btn btn-light">Cancelar</button>
+                  <button mat-button class="btn btn-warning" (click)="ShowSdiv('settings-step2')">Guardar</button>
                 </div>
               </div>
             </form>

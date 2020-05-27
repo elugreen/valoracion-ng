@@ -16,6 +16,8 @@ import { ProgressSpinnerMode } from "@angular/material/progress-spinner";
 import { ThemePalette } from "@angular/material/core";
 import { MatPaginator } from "@angular/material/paginator";
 import { Router } from "@angular/router";
+import { MatIconRegistry } from "@angular/material/icon";
+import { DomSanitizer } from "@angular/platform-browser";
 
 import {
   Gallery,
@@ -229,8 +231,15 @@ export class HomeComponent implements OnInit {
     private formBuilder: FormBuilder,
     public gallery: Gallery,
     private fb: FormBuilder,
-    private router: Router
-  ) {}
+    private router: Router,
+    private matIconRegistry: MatIconRegistry,
+    private domSanitizer: DomSanitizer
+  ) {
+    this.matIconRegistry.addSvgIcon(
+      "arriba",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/img/arriba.svg")
+    );
+  }
   
 
 
@@ -267,20 +276,9 @@ export class HomeComponent implements OnInit {
       { item_id: 7, item_text: 'SHAKO MOTORS SA BOGOTA' }
     ];
     this.selectedAutoshop=[ ];
-
-    this.tipotaller = [
-      { item_id: 1, item_text: 'Concesionario' },
-      { item_id: 2, item_text: 'Multimarca' },
-      { item_id: 3, item_text: 'Mixto' },
-    ];
+    
     this.selectedAutoshoptype=[ ];
 
-    this.calidadtaller = [
-      { item_id: 1, item_text: 'Tipo A' },
-      { item_id: 2, item_text: 'Tipo B' },
-      { item_id: 3, item_text: 'Tipo C' },
-      { item_id: 4, item_text: 'Tipo D' },
-    ];
     this.selectedAutoshopc=[ ];
 
     this.marca = [
